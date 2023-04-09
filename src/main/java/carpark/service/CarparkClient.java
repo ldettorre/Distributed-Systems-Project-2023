@@ -26,6 +26,7 @@ public class CarparkClient {
 			AccessRequest request = AccessRequest.newBuilder().setIdNumber(idNumber).build();
 			AccessResponse response = blockingStub.accessCarpark(request);
 			logger.info("Client Side Started..");
+			logger.info(response.getMessage());
 		}
 		catch(StatusRuntimeException e) {
 			logger.log(Level.WARNING, "RCP failed: (0)", e.getStatus());
