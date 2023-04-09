@@ -42,7 +42,15 @@ public class CarparkServer extends carparkServicesImplBase{
 	@Override
 	public void accessCarpark(AccessRequest request, StreamObserver<AccessResponse> responseObserver) {
 		System.out.println("Recieving Access Request");
-		AccessResponse response = AccessResponse.newBuilder().setMessage("Message returned. "+ request.getIdNumber()).build();
+		String idPresented = request.getIdNumber();
+		String outcome = "";
+		if(Integer.parseInt(idPresented) % 2 ==0){
+			outcome += "Valid ID :"+request.getIdNumber()+" Access Granted";
+		}
+		else {
+			outcome += "ID :"+request.getIdNumber()+" is not valid.\n Access Denied.";
+		}
+		AccessResponse response = AccessResponse.newBuilder().setMessage(outcome).build();
 		responseObserver.onNext(response);
 	     
 	    responseObserver.onCompleted();
@@ -58,7 +66,7 @@ public class CarparkServer extends carparkServicesImplBase{
 	}
 	
 	@Override
-	public void getNumAvailSpaces(SpacesRequest request, StreamObserver<SpacesResponse> responseObserver) {
+	public void getAvailSpaces(SpacesRequest request, StreamObserver<SpacesResponse> responseObserver) {
 		System.out.println("Recieving Spaces Request");
 		// Below is a hardcoded fictional array of parking space available
 		// Each int represents a parking space id
@@ -70,4 +78,7 @@ public class CarparkServer extends carparkServicesImplBase{
 		}
 		responseObserver.onCompleted();
 	}
+	
+	@Override
+	public StreamObserver<AvailRequest> getSumAvailSpaces(final StreamObserver<AvailResponse> responseObserver) {
 }

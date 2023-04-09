@@ -44,6 +44,16 @@ public final class CarparkImpl {
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_carpark_SpacesResponse_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_carpark_AvailRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_carpark_AvailRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_carpark_AvailResponse_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_carpark_AvailResponse_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -57,14 +67,18 @@ public final class CarparkImpl {
       "t\022\020\n\010idNumber\030\001 \001(\t\"!\n\016AccessResponse\022\017\n" +
       "\007message\030\001 \001(\t\"\016\n\014LeaveRequest\" \n\rLeaveR" +
       "esponse\022\017\n\007message\030\001 \001(\t\"\017\n\rSpacesReques" +
-      "t\"!\n\016SpacesResponse\022\017\n\007message\030\001 \001(\0052\340\001\n" +
-      "\017carparkServices\022B\n\rAccessCarpark\022\026.carp" +
-      "ark.AccessRequest\032\027.carpark.AccessRespon" +
-      "se\"\000\022?\n\014LeaveCarpark\022\025.carpark.LeaveRequ" +
-      "est\032\026.carpark.LeaveResponse\"\000\022H\n\021GetNumA" +
-      "vailSpaces\022\026.carpark.SpacesRequest\032\027.car" +
-      "park.SpacesResponse\"\0000\001B \n\017carpark.servi" +
-      "ceB\013CarparkImplP\001b\006proto3"
+      "t\"!\n\016SpacesResponse\022\017\n\007message\030\001 \001(\005\"\037\n\014" +
+      "AvailRequest\022\017\n\007isAvail\030\001 \001(\010\"!\n\rAvailRe" +
+      "sponse\022\020\n\010sumAvail\030\001 \001(\0052\245\002\n\017carparkServ" +
+      "ices\022B\n\rAccessCarpark\022\026.carpark.AccessRe" +
+      "quest\032\027.carpark.AccessResponse\"\000\022?\n\014Leav" +
+      "eCarpark\022\025.carpark.LeaveRequest\032\026.carpar" +
+      "k.LeaveResponse\"\000\022E\n\016GetAvailSpaces\022\026.ca" +
+      "rpark.SpacesRequest\032\027.carpark.SpacesResp" +
+      "onse\"\0000\001\022F\n\021GetSumAvailSpaces\022\025.carpark." +
+      "AvailRequest\032\026.carpark.AvailResponse\"\000(\001" +
+      "B \n\017carpark.serviceB\013CarparkImplP\001b\006prot" +
+      "o3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -114,6 +128,18 @@ public final class CarparkImpl {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_carpark_SpacesResponse_descriptor,
         new java.lang.String[] { "Message", });
+    internal_static_carpark_AvailRequest_descriptor =
+      getDescriptor().getMessageTypes().get(6);
+    internal_static_carpark_AvailRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_carpark_AvailRequest_descriptor,
+        new java.lang.String[] { "IsAvail", });
+    internal_static_carpark_AvailResponse_descriptor =
+      getDescriptor().getMessageTypes().get(7);
+    internal_static_carpark_AvailResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_carpark_AvailResponse_descriptor,
+        new java.lang.String[] { "SumAvail", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

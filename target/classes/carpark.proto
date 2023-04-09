@@ -9,7 +9,8 @@ package carpark;
 service carparkServices {
 	rpc AccessCarpark(AccessRequest) returns (AccessResponse){};
 	rpc LeaveCarpark(LeaveRequest) returns (LeaveResponse){};
-	rpc GetNumAvailSpaces(SpacesRequest) returns (stream SpacesResponse){};
+	rpc GetAvailSpaces(SpacesRequest) returns (stream SpacesResponse){};
+	rpc GetSumAvailSpaces(stream AvailRequest) returns (AvailResponse){};
 }
 
 message AccessRequest {
@@ -32,4 +33,12 @@ message SpacesRequest {
 
 message SpacesResponse {
 	int32 message = 1;
+}
+
+message AvailRequest {
+	Boolean isAvail = 1;
+}
+
+message AvailResponse {
+	int32 sumAvail = 1;
 }
