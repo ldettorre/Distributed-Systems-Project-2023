@@ -59,6 +59,70 @@ public final class carparkServicesGrpc {
      return getAccessCarparkMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<carpark.service.LeaveRequest,
+      carpark.service.LeaveResponse> getLeaveCarparkMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "LeaveCarpark",
+      requestType = carpark.service.LeaveRequest.class,
+      responseType = carpark.service.LeaveResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<carpark.service.LeaveRequest,
+      carpark.service.LeaveResponse> getLeaveCarparkMethod() {
+    io.grpc.MethodDescriptor<carpark.service.LeaveRequest, carpark.service.LeaveResponse> getLeaveCarparkMethod;
+    if ((getLeaveCarparkMethod = carparkServicesGrpc.getLeaveCarparkMethod) == null) {
+      synchronized (carparkServicesGrpc.class) {
+        if ((getLeaveCarparkMethod = carparkServicesGrpc.getLeaveCarparkMethod) == null) {
+          carparkServicesGrpc.getLeaveCarparkMethod = getLeaveCarparkMethod = 
+              io.grpc.MethodDescriptor.<carpark.service.LeaveRequest, carpark.service.LeaveResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "carpark.carparkServices", "LeaveCarpark"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  carpark.service.LeaveRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  carpark.service.LeaveResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new carparkServicesMethodDescriptorSupplier("LeaveCarpark"))
+                  .build();
+          }
+        }
+     }
+     return getLeaveCarparkMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<carpark.service.SpacesRequest,
+      carpark.service.SpacesResponse> getGetNumAvailSpacesMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "GetNumAvailSpaces",
+      requestType = carpark.service.SpacesRequest.class,
+      responseType = carpark.service.SpacesResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
+  public static io.grpc.MethodDescriptor<carpark.service.SpacesRequest,
+      carpark.service.SpacesResponse> getGetNumAvailSpacesMethod() {
+    io.grpc.MethodDescriptor<carpark.service.SpacesRequest, carpark.service.SpacesResponse> getGetNumAvailSpacesMethod;
+    if ((getGetNumAvailSpacesMethod = carparkServicesGrpc.getGetNumAvailSpacesMethod) == null) {
+      synchronized (carparkServicesGrpc.class) {
+        if ((getGetNumAvailSpacesMethod = carparkServicesGrpc.getGetNumAvailSpacesMethod) == null) {
+          carparkServicesGrpc.getGetNumAvailSpacesMethod = getGetNumAvailSpacesMethod = 
+              io.grpc.MethodDescriptor.<carpark.service.SpacesRequest, carpark.service.SpacesResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
+              .setFullMethodName(generateFullMethodName(
+                  "carpark.carparkServices", "GetNumAvailSpaces"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  carpark.service.SpacesRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  carpark.service.SpacesResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new carparkServicesMethodDescriptorSupplier("GetNumAvailSpaces"))
+                  .build();
+          }
+        }
+     }
+     return getGetNumAvailSpacesMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -93,6 +157,20 @@ public final class carparkServicesGrpc {
       asyncUnimplementedUnaryCall(getAccessCarparkMethod(), responseObserver);
     }
 
+    /**
+     */
+    public void leaveCarpark(carpark.service.LeaveRequest request,
+        io.grpc.stub.StreamObserver<carpark.service.LeaveResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(getLeaveCarparkMethod(), responseObserver);
+    }
+
+    /**
+     */
+    public void getNumAvailSpaces(carpark.service.SpacesRequest request,
+        io.grpc.stub.StreamObserver<carpark.service.SpacesResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(getGetNumAvailSpacesMethod(), responseObserver);
+    }
+
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -102,6 +180,20 @@ public final class carparkServicesGrpc {
                 carpark.service.AccessRequest,
                 carpark.service.AccessResponse>(
                   this, METHODID_ACCESS_CARPARK)))
+          .addMethod(
+            getLeaveCarparkMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                carpark.service.LeaveRequest,
+                carpark.service.LeaveResponse>(
+                  this, METHODID_LEAVE_CARPARK)))
+          .addMethod(
+            getGetNumAvailSpacesMethod(),
+            asyncServerStreamingCall(
+              new MethodHandlers<
+                carpark.service.SpacesRequest,
+                carpark.service.SpacesResponse>(
+                  this, METHODID_GET_NUM_AVAIL_SPACES)))
           .build();
     }
   }
@@ -131,6 +223,22 @@ public final class carparkServicesGrpc {
       asyncUnaryCall(
           getChannel().newCall(getAccessCarparkMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /**
+     */
+    public void leaveCarpark(carpark.service.LeaveRequest request,
+        io.grpc.stub.StreamObserver<carpark.service.LeaveResponse> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getLeaveCarparkMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void getNumAvailSpaces(carpark.service.SpacesRequest request,
+        io.grpc.stub.StreamObserver<carpark.service.SpacesResponse> responseObserver) {
+      asyncServerStreamingCall(
+          getChannel().newCall(getGetNumAvailSpacesMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -156,6 +264,21 @@ public final class carparkServicesGrpc {
     public carpark.service.AccessResponse accessCarpark(carpark.service.AccessRequest request) {
       return blockingUnaryCall(
           getChannel(), getAccessCarparkMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public carpark.service.LeaveResponse leaveCarpark(carpark.service.LeaveRequest request) {
+      return blockingUnaryCall(
+          getChannel(), getLeaveCarparkMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public java.util.Iterator<carpark.service.SpacesResponse> getNumAvailSpaces(
+        carpark.service.SpacesRequest request) {
+      return blockingServerStreamingCall(
+          getChannel(), getGetNumAvailSpacesMethod(), getCallOptions(), request);
     }
   }
 
@@ -184,9 +307,19 @@ public final class carparkServicesGrpc {
       return futureUnaryCall(
           getChannel().newCall(getAccessCarparkMethod(), getCallOptions()), request);
     }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<carpark.service.LeaveResponse> leaveCarpark(
+        carpark.service.LeaveRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(getLeaveCarparkMethod(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_ACCESS_CARPARK = 0;
+  private static final int METHODID_LEAVE_CARPARK = 1;
+  private static final int METHODID_GET_NUM_AVAIL_SPACES = 2;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -208,6 +341,14 @@ public final class carparkServicesGrpc {
         case METHODID_ACCESS_CARPARK:
           serviceImpl.accessCarpark((carpark.service.AccessRequest) request,
               (io.grpc.stub.StreamObserver<carpark.service.AccessResponse>) responseObserver);
+          break;
+        case METHODID_LEAVE_CARPARK:
+          serviceImpl.leaveCarpark((carpark.service.LeaveRequest) request,
+              (io.grpc.stub.StreamObserver<carpark.service.LeaveResponse>) responseObserver);
+          break;
+        case METHODID_GET_NUM_AVAIL_SPACES:
+          serviceImpl.getNumAvailSpaces((carpark.service.SpacesRequest) request,
+              (io.grpc.stub.StreamObserver<carpark.service.SpacesResponse>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -271,6 +412,8 @@ public final class carparkServicesGrpc {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new carparkServicesFileDescriptorSupplier())
               .addMethod(getAccessCarparkMethod())
+              .addMethod(getLeaveCarparkMethod())
+              .addMethod(getGetNumAvailSpacesMethod())
               .build();
         }
       }

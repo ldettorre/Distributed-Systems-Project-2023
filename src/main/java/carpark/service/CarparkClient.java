@@ -1,5 +1,6 @@
 package carpark.service;
 
+import java.util.Iterator;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,9 +25,24 @@ public class CarparkClient {
 		try {
 			String idNumber = "2";
 			AccessRequest request = AccessRequest.newBuilder().setIdNumber(idNumber).build();
+			LeaveRequest requestL = LeaveRequest.newBuilder().build();
+			SpacesRequest requestS = SpacesRequest.newBuilder().build();
+			
 			AccessResponse response = blockingStub.accessCarpark(request);
-			logger.info("Client Side Started..");
+			LeaveResponse responseL = blockingStub.leaveCarpark(requestL);
+			Iterator<SpacesResponse> responseS = blockingStub.getNumAvailSpaces(requestS);
+			
+			logger.info("Access Request Started..");
 			logger.info(response.getMessage());
+			logger.info("Leave Request Started..");
+			logger.info(responseL.getMessage());
+			logger.info("Getting Spaces Started..");
+
+			while (responseS.hasNext()) {
+				Thread.sleep(1000);
+			    SpacesResponse singleResponse = responseS.next();
+			    System.out.println("Available Parking Bays: " + singleResponse.getMessage());
+			}
 		}
 		catch(StatusRuntimeException e) {
 			logger.log(Level.WARNING, "RCP failed: (0)", e.getStatus());

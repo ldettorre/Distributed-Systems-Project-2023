@@ -24,6 +24,26 @@ public final class CarparkImpl {
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_carpark_AccessResponse_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_carpark_LeaveRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_carpark_LeaveRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_carpark_LeaveResponse_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_carpark_LeaveResponse_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_carpark_SpacesRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_carpark_SpacesRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_carpark_SpacesResponse_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_carpark_SpacesResponse_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -35,10 +55,16 @@ public final class CarparkImpl {
     java.lang.String[] descriptorData = {
       "\n\rcarpark.proto\022\007carpark\"!\n\rAccessReques" +
       "t\022\020\n\010idNumber\030\001 \001(\t\"!\n\016AccessResponse\022\017\n" +
-      "\007message\030\001 \001(\t2U\n\017carparkServices\022B\n\rAcc" +
-      "essCarpark\022\026.carpark.AccessRequest\032\027.car" +
-      "park.AccessResponse\"\000B \n\017carpark.service" +
-      "B\013CarparkImplP\001b\006proto3"
+      "\007message\030\001 \001(\t\"\016\n\014LeaveRequest\" \n\rLeaveR" +
+      "esponse\022\017\n\007message\030\001 \001(\t\"\017\n\rSpacesReques" +
+      "t\"!\n\016SpacesResponse\022\017\n\007message\030\001 \001(\0052\340\001\n" +
+      "\017carparkServices\022B\n\rAccessCarpark\022\026.carp" +
+      "ark.AccessRequest\032\027.carpark.AccessRespon" +
+      "se\"\000\022?\n\014LeaveCarpark\022\025.carpark.LeaveRequ" +
+      "est\032\026.carpark.LeaveResponse\"\000\022H\n\021GetNumA" +
+      "vailSpaces\022\026.carpark.SpacesRequest\032\027.car" +
+      "park.SpacesResponse\"\0000\001B \n\017carpark.servi" +
+      "ceB\013CarparkImplP\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -63,6 +89,30 @@ public final class CarparkImpl {
     internal_static_carpark_AccessResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_carpark_AccessResponse_descriptor,
+        new java.lang.String[] { "Message", });
+    internal_static_carpark_LeaveRequest_descriptor =
+      getDescriptor().getMessageTypes().get(2);
+    internal_static_carpark_LeaveRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_carpark_LeaveRequest_descriptor,
+        new java.lang.String[] { });
+    internal_static_carpark_LeaveResponse_descriptor =
+      getDescriptor().getMessageTypes().get(3);
+    internal_static_carpark_LeaveResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_carpark_LeaveResponse_descriptor,
+        new java.lang.String[] { "Message", });
+    internal_static_carpark_SpacesRequest_descriptor =
+      getDescriptor().getMessageTypes().get(4);
+    internal_static_carpark_SpacesRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_carpark_SpacesRequest_descriptor,
+        new java.lang.String[] { });
+    internal_static_carpark_SpacesResponse_descriptor =
+      getDescriptor().getMessageTypes().get(5);
+    internal_static_carpark_SpacesResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_carpark_SpacesResponse_descriptor,
         new java.lang.String[] { "Message", });
   }
 

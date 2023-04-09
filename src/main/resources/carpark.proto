@@ -8,6 +8,8 @@ package carpark;
 
 service carparkServices {
 	rpc AccessCarpark(AccessRequest) returns (AccessResponse){};
+	rpc LeaveCarpark(LeaveRequest) returns (LeaveResponse){};
+	rpc GetNumAvailSpaces(SpacesRequest) returns (stream SpacesResponse){};
 }
 
 message AccessRequest {
@@ -16,4 +18,18 @@ message AccessRequest {
 
 message AccessResponse {
 	string message = 1;
+}
+
+message LeaveRequest{
+}
+
+message LeaveResponse {
+	string message = 1;
+}
+
+message SpacesRequest {
+}
+
+message SpacesResponse {
+	int32 message = 1;
 }

@@ -1,6 +1,7 @@
 package carpark.service;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
 import carpark.service.carparkServicesGrpc.carparkServicesImplBase;
@@ -45,5 +46,28 @@ public class CarparkServer extends carparkServicesImplBase{
 		responseObserver.onNext(response);
 	     
 	    responseObserver.onCompleted();
+	}
+	
+	@Override
+	public void leaveCarpark(LeaveRequest request, StreamObserver<LeaveResponse> responseObserver) {
+		System.out.println("Recieving Leave Request");
+		LeaveResponse response = LeaveResponse.newBuilder().setMessage("You are leaving... ").build();
+		responseObserver.onNext(response);
+	     
+	    responseObserver.onCompleted();
+	}
+	
+	@Override
+	public void getNumAvailSpaces(SpacesRequest request, StreamObserver<SpacesResponse> responseObserver) {
+		System.out.println("Recieving Spaces Request");
+		// Below is a hardcoded fictional array of parking space available
+		// Each int represents a parking space id
+		int[] parkingSpaces = new int[] { 112, 213, 13, 98, 5 };
+		for(int i=0;i<parkingSpaces.length;i++) {
+			int space = parkingSpaces[i];
+			SpacesResponse response = SpacesResponse.newBuilder().setMessage(space).build();
+			responseObserver.onNext(response);
+		}
+		responseObserver.onCompleted();
 	}
 }
