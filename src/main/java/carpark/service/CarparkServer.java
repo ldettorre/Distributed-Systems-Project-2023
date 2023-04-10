@@ -81,4 +81,33 @@ public class CarparkServer extends carparkServicesImplBase{
 	
 	@Override
 	public StreamObserver<AvailRequest> getSumAvailSpaces(final StreamObserver<AvailResponse> responseObserver) {
+		System.out.println("Recieving Sum of Available Spaces Request");
+	return new StreamObserver<AvailRequest>() {
+		int availSpaces = 0;
+		@Override
+		public void onNext(AvailRequest isAvail) {
+			// TODO Auto-generated method stub
+			System.out.println(isAvail.getIsAvail());
+			if(isAvail.getIsAvail() == true) {
+				availSpaces +=1;
+			}
+		}
+		
+		@Override
+		public void onError(Throwable t) {
+			// TODO Auto-generated method stub
+			logger.info("Error occured with getSumAvailSpaces on server file.");
+		}
+
+		@Override
+		public void onCompleted() {
+			// TODO Auto-generated method stub
+			AvailResponse response = AvailResponse.newBuilder().setSumAvail(availSpaces).build();
+			responseObserver.onNext(response);
+			responseObserver.onCompleted();
+		}
+		
+		};
+		
+	}
 }

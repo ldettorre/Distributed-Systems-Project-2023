@@ -10,6 +10,7 @@ import carpark.service.carparkServicesGrpc.carparkServicesStub;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.StatusRuntimeException;
+import io.grpc.stub.StreamObserver;
 
 public class CarparkClient {
 	private static final Logger logger = Logger.getLogger(CarparkClient.class.getName());
@@ -36,6 +37,7 @@ public class CarparkClient {
 			LeaveResponse responseL = blockingStub.leaveCarpark(requestL);
 			Iterator<SpacesResponse> responseS = blockingStub.getAvailSpaces(requestS);
 			
+			
 			logger.info("Access Request Started..");
 			System.out.println(response.getMessage());
 			logger.info("Leave Request Started..");
@@ -48,8 +50,35 @@ public class CarparkClient {
 			    System.out.println("Available Parking Bays: " + singleResponse.getMessage());
 			}
 			
+			// Client side streaming method  - GetSumAvailSpaces
+			StreamObserver<AvailRequest> requestObserver = asyncStub.getSumAvailSpaces(new StreamObserver<AvailResponse>() {
+
+				@Override
+				public void onNext(AvailResponse sumAvail) {
+					// TODO Auto-generated method stub
+					System.out.println("Number of available parking spaces: " + sumAvail.getSumAvail());
+				}
+
+				@Override
+				public void onCompleted() {
+					// TODO Auto-generated method stub
+					logger.info("Finished client side streaming sum of available spaces.");
+				}
+
+				@Override
+				public void onError(Throwable t) {
+					// TODO Auto-generated method stub
+					logger.info("Error with client side stream method");
+				}
+			});
 			
-			
+			Boolean[] availStatuses = {true, true, false, false, true};
+			for(int i=0;i<availStatuses.length;i++) {
+				AvailRequest requestA = AvailRequest.newBuilder().setIsAvail(availStatuses[i]).build();
+				requestObserver.onNext(requestA);
+				Thread.sleep(2000);
+			}
+			requestObserver.onCompleted();
 			
 		}
 		catch(StatusRuntimeException e) {
