@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "resources.service";
+option java_outer_classname = "ResourcesImpl";
+
+package resources;
+
+service resourcesServices {
+	rpc TestMethod(TestRequest) returns (TestResponse){};
+}
+
+message TestRequest {
+	string input = 1;
+}
+
+message TestResponse {
+	string output = 1;
+}
+
+

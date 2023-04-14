@@ -87,7 +87,7 @@ public class CarparkServer extends carparkServicesImplBase{
 		@Override
 		public void onNext(AvailRequest isAvail) {
 			// TODO Auto-generated method stub
-			System.out.println(isAvail.getIsAvail());
+			System.out.println("Is this spot available: "+isAvail.getIsAvail());
 			if(isAvail.getIsAvail() == true) {
 				availSpaces +=1;
 			}
