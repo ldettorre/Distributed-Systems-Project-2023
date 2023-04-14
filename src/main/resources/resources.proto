@@ -11,7 +11,7 @@ service resourcesServices {
 }
 
 message PrintRequest {
-	string docId = 1;
+	int32 docId = 1;
 }
 
 message PrintResponse {

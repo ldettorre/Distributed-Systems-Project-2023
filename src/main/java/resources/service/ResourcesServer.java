@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
+import carpark.service.AvailRequest;
 import resources.service.resourcesServicesGrpc.resourcesServicesImplBase;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
@@ -39,13 +40,34 @@ public class ResourcesServer extends resourcesServicesImplBase{
 	    		    
 	}
 	
-//	@Override
-//	public void wifiPrinting(PrintRequest request, StreamObserver<PrintResponse> responseObserver) {
-//		System.out.println("Recieving wifiPrinting request");
-//		String docId = request.getDocId();
-//		PrintResponse response = PrintResponse.newBuilder().setIsPrinted("Yes.").setDocId(docId).build();
-//		responseObserver.onNext(response);
-//		responseObserver.onCompleted();
-//		System.out.println("wifiPrinting response sent.");
-//	}
+	@Override
+	public StreamObserver<PrintRequest> wifiPrinting(final StreamObserver<PrintResponse> responseObserver){
+		return new StreamObserver<PrintRequest>() {
+		
+			@Override
+			public void onNext(PrintRequest request) {
+				// TODO Auto-generated method stub
+				System.out.println("Document ID: "+ request.getDocId()+ " is printing..");
+				
+			}
+
+			@Override
+			public void onError(Throwable t) {
+				// TODO Auto-generated method stub
+				logger.info("Error occured with wifiPrinting on server file.");
+				
+			}
+
+			@Override
+			public void onCompleted() {
+				// TODO Auto-generated method stub
+				PrintResponse response = PrintResponse.newBuilder()
+						.setIsPrinted("Printing Complete")
+						.build();
+				responseObserver.onNext(response);
+				responseObserver.onCompleted();
+				
+			}
+		};
+	}
 }

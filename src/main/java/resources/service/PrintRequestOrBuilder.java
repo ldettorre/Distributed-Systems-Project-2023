@@ -8,12 +8,7 @@ public interface PrintRequestOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>string docId = 1;</code>
+   * <code>int32 docId = 1;</code>
    */
-  java.lang.String getDocId();
-  /**
-   * <code>string docId = 1;</code>
-   */
-  com.google.protobuf.ByteString
-      getDocIdBytes();
+  int getDocId();
 }

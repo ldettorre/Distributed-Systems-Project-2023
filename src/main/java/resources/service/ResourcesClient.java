@@ -40,11 +40,14 @@ public class ResourcesClient {
 //		finally {
 //			channel.shutdown().awaitTermination(5, TimeUnit.SECONDS);
 //		}
+		try {
 		StreamObserver<PrintRequest> requestObserver = stub.wifiPrinting(new StreamObserver<PrintResponse>() {
 
 			@Override
-			public void onNext(PrintResponse value) {
+			public void onNext(PrintResponse response) {
 				// TODO Auto-generated method stub
+				System.out.println("Document ID: "+ response.getDocId());
+				System.out.println("Print status: "+ response.getIsPrinted());
 				
 			}
 
@@ -60,5 +63,22 @@ public class ResourcesClient {
 				
 			}
 		});
+		
+		Integer[] docsToPrint = {21,22,23,24,25,26};
+		for(int numDocs=0; numDocs<docsToPrint.length; numDocs++) {
+			PrintRequest request = PrintRequest.newBuilder().setDocId(docsToPrint[numDocs]).build();
+			requestObserver.onNext(request);
+			System.out.println("Sending Doc ID: "+request.getDocId() + " to print..");
+			Thread.sleep(500);
+		}
+		requestObserver.onCompleted();
+		
+		}
+		catch(StatusRuntimeException e) {
+			logger.log(Level.WARNING, "RCP failed: (0)", e.getStatus());
+		}
+		finally {
+			channel.shutdown().awaitTermination(5, TimeUnit.SECONDS);
+		}
 	}
 }

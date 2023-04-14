@@ -34,7 +34,7 @@ public final class ResourcesImpl {
   static {
     java.lang.String[] descriptorData = {
       "\n\017resources.proto\022\tresources\"\035\n\014PrintReq" +
-      "uest\022\r\n\005docId\030\001 \001(\t\"1\n\rPrintResponse\022\021\n\t" +
+      "uest\022\r\n\005docId\030\001 \001(\005\"1\n\rPrintResponse\022\021\n\t" +
       "isPrinted\030\001 \001(\t\022\r\n\005docId\030\002 \001(\t2\\\n\021resour" +
       "cesServices\022G\n\014WifiPrinting\022\027.resources." +
       "PrintRequest\032\030.resources.PrintResponse\"\000" +

@@ -16,7 +16,7 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private PrintRequest() {
-    docId_ = "";
+    docId_ = 0;
   }
 
   @java.lang.Override
@@ -43,10 +43,9 @@ private static final long serialVersionUID = 0L;
           case 0:
             done = true;
             break;
-          case 10: {
-            java.lang.String s = input.readStringRequireUtf8();
+          case 8: {
 
-            docId_ = s;
+            docId_ = input.readInt32();
             break;
           }
           default: {
@@ -82,37 +81,12 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int DOCID_FIELD_NUMBER = 1;
-  private volatile java.lang.Object docId_;
+  private int docId_;
   /**
-   * <code>string docId = 1;</code>
+   * <code>int32 docId = 1;</code>
    */
-  public java.lang.String getDocId() {
-    java.lang.Object ref = docId_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs = 
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      docId_ = s;
-      return s;
-    }
-  }
-  /**
-   * <code>string docId = 1;</code>
-   */
-  public com.google.protobuf.ByteString
-      getDocIdBytes() {
-    java.lang.Object ref = docId_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      docId_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
+  public int getDocId() {
+    return docId_;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -129,8 +103,8 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (!getDocIdBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 1, docId_);
+    if (docId_ != 0) {
+      output.writeInt32(1, docId_);
     }
     unknownFields.writeTo(output);
   }
@@ -141,8 +115,9 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (!getDocIdBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, docId_);
+    if (docId_ != 0) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt32Size(1, docId_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -160,8 +135,8 @@ private static final long serialVersionUID = 0L;
     resources.service.PrintRequest other = (resources.service.PrintRequest) obj;
 
     boolean result = true;
-    result = result && getDocId()
-        .equals(other.getDocId());
+    result = result && (getDocId()
+        == other.getDocId());
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -174,7 +149,7 @@ private static final long serialVersionUID = 0L;
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + DOCID_FIELD_NUMBER;
-    hash = (53 * hash) + getDocId().hashCode();
+    hash = (53 * hash) + getDocId();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -308,7 +283,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      docId_ = "";
+      docId_ = 0;
 
       return this;
     }
@@ -385,9 +360,8 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(resources.service.PrintRequest other) {
       if (other == resources.service.PrintRequest.getDefaultInstance()) return this;
-      if (!other.getDocId().isEmpty()) {
-        docId_ = other.docId_;
-        onChanged();
+      if (other.getDocId() != 0) {
+        setDocId(other.getDocId());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -418,71 +392,28 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private java.lang.Object docId_ = "";
+    private int docId_ ;
     /**
-     * <code>string docId = 1;</code>
+     * <code>int32 docId = 1;</code>
      */
-    public java.lang.String getDocId() {
-      java.lang.Object ref = docId_;
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        docId_ = s;
-        return s;
-      } else {
-        return (java.lang.String) ref;
-      }
+    public int getDocId() {
+      return docId_;
     }
     /**
-     * <code>string docId = 1;</code>
+     * <code>int32 docId = 1;</code>
      */
-    public com.google.protobuf.ByteString
-        getDocIdBytes() {
-      java.lang.Object ref = docId_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        docId_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-    /**
-     * <code>string docId = 1;</code>
-     */
-    public Builder setDocId(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
+    public Builder setDocId(int value) {
+      
       docId_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>string docId = 1;</code>
+     * <code>int32 docId = 1;</code>
      */
     public Builder clearDocId() {
       
-      docId_ = getDefaultInstance().getDocId();
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string docId = 1;</code>
-     */
-    public Builder setDocIdBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      docId_ = value;
+      docId_ = 0;
       onChanged();
       return this;
     }
