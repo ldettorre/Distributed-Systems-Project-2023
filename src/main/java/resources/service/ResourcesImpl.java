@@ -15,15 +15,15 @@ public final class ResourcesImpl {
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_resources_TestRequest_descriptor;
+    internal_static_resources_PrintRequest_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_resources_TestRequest_fieldAccessorTable;
+      internal_static_resources_PrintRequest_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_resources_TestResponse_descriptor;
+    internal_static_resources_PrintResponse_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_resources_TestResponse_fieldAccessorTable;
+      internal_static_resources_PrintResponse_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -33,12 +33,13 @@ public final class ResourcesImpl {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\017resources.proto\022\tresources\"\034\n\013TestRequ" +
-      "est\022\r\n\005input\030\001 \001(\t\"\036\n\014TestResponse\022\016\n\006ou" +
-      "tput\030\001 \001(\t2T\n\021resourcesServices\022?\n\nTestM" +
-      "ethod\022\026.resources.TestRequest\032\027.resource" +
-      "s.TestResponse\"\000B$\n\021resources.serviceB\rR" +
-      "esourcesImplP\001b\006proto3"
+      "\n\017resources.proto\022\tresources\"\035\n\014PrintReq" +
+      "uest\022\r\n\005docId\030\001 \001(\t\"1\n\rPrintResponse\022\021\n\t" +
+      "isPrinted\030\001 \001(\t\022\r\n\005docId\030\002 \001(\t2\\\n\021resour" +
+      "cesServices\022G\n\014WifiPrinting\022\027.resources." +
+      "PrintRequest\032\030.resources.PrintResponse\"\000" +
+      "(\0010\001B$\n\021resources.serviceB\rResourcesImpl" +
+      "P\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -52,18 +53,18 @@ public final class ResourcesImpl {
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         }, assigner);
-    internal_static_resources_TestRequest_descriptor =
+    internal_static_resources_PrintRequest_descriptor =
       getDescriptor().getMessageTypes().get(0);
-    internal_static_resources_TestRequest_fieldAccessorTable = new
+    internal_static_resources_PrintRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_resources_TestRequest_descriptor,
-        new java.lang.String[] { "Input", });
-    internal_static_resources_TestResponse_descriptor =
+        internal_static_resources_PrintRequest_descriptor,
+        new java.lang.String[] { "DocId", });
+    internal_static_resources_PrintResponse_descriptor =
       getDescriptor().getMessageTypes().get(1);
-    internal_static_resources_TestResponse_fieldAccessorTable = new
+    internal_static_resources_PrintResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_resources_TestResponse_descriptor,
-        new java.lang.String[] { "Output", });
+        internal_static_resources_PrintResponse_descriptor,
+        new java.lang.String[] { "IsPrinted", "DocId", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

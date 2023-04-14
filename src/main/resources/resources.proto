@@ -7,15 +7,16 @@ option java_outer_classname = "ResourcesImpl";
 package resources;
 
 service resourcesServices {
-	rpc TestMethod(TestRequest) returns (TestResponse){};
+	rpc WifiPrinting(stream PrintRequest) returns (stream PrintResponse){};
 }
 
-message TestRequest {
-	string input = 1;
+message PrintRequest {
+	string docId = 1;
 }
 
-message TestResponse {
-	string output = 1;
+message PrintResponse {
+	string isPrinted = 1;
+	string docId = 2;
 }
 
 

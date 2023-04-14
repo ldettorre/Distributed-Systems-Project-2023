@@ -39,13 +39,13 @@ public class ResourcesServer extends resourcesServicesImplBase{
 	    		    
 	}
 	
-	@Override
-	public void testMethod(TestRequest request, StreamObserver<TestResponse> responseObserver) {
-		System.out.println("Recieving testMethod request");
-		String output = request.getInput();
-		TestResponse response = TestResponse.newBuilder().setOutput("This is the output" +output).build();
-		responseObserver.onNext(response);
-		responseObserver.onCompleted();
-		System.out.println("TestMethod response sent.");
-	}
+//	@Override
+//	public void wifiPrinting(PrintRequest request, StreamObserver<PrintResponse> responseObserver) {
+//		System.out.println("Recieving wifiPrinting request");
+//		String docId = request.getDocId();
+//		PrintResponse response = PrintResponse.newBuilder().setIsPrinted("Yes.").setDocId(docId).build();
+//		responseObserver.onNext(response);
+//		responseObserver.onCompleted();
+//		System.out.println("wifiPrinting response sent.");
+//	}
 }

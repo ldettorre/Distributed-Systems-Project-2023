@@ -27,36 +27,36 @@ public final class resourcesServicesGrpc {
   public static final String SERVICE_NAME = "resources.resourcesServices";
 
   // Static method descriptors that strictly reflect the proto.
-  private static volatile io.grpc.MethodDescriptor<resources.service.TestRequest,
-      resources.service.TestResponse> getTestMethodMethod;
+  private static volatile io.grpc.MethodDescriptor<resources.service.PrintRequest,
+      resources.service.PrintResponse> getWifiPrintingMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "TestMethod",
-      requestType = resources.service.TestRequest.class,
-      responseType = resources.service.TestResponse.class,
-      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<resources.service.TestRequest,
-      resources.service.TestResponse> getTestMethodMethod() {
-    io.grpc.MethodDescriptor<resources.service.TestRequest, resources.service.TestResponse> getTestMethodMethod;
-    if ((getTestMethodMethod = resourcesServicesGrpc.getTestMethodMethod) == null) {
+      fullMethodName = SERVICE_NAME + '/' + "WifiPrinting",
+      requestType = resources.service.PrintRequest.class,
+      responseType = resources.service.PrintResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.BIDI_STREAMING)
+  public static io.grpc.MethodDescriptor<resources.service.PrintRequest,
+      resources.service.PrintResponse> getWifiPrintingMethod() {
+    io.grpc.MethodDescriptor<resources.service.PrintRequest, resources.service.PrintResponse> getWifiPrintingMethod;
+    if ((getWifiPrintingMethod = resourcesServicesGrpc.getWifiPrintingMethod) == null) {
       synchronized (resourcesServicesGrpc.class) {
-        if ((getTestMethodMethod = resourcesServicesGrpc.getTestMethodMethod) == null) {
-          resourcesServicesGrpc.getTestMethodMethod = getTestMethodMethod = 
-              io.grpc.MethodDescriptor.<resources.service.TestRequest, resources.service.TestResponse>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+        if ((getWifiPrintingMethod = resourcesServicesGrpc.getWifiPrintingMethod) == null) {
+          resourcesServicesGrpc.getWifiPrintingMethod = getWifiPrintingMethod = 
+              io.grpc.MethodDescriptor.<resources.service.PrintRequest, resources.service.PrintResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.BIDI_STREAMING)
               .setFullMethodName(generateFullMethodName(
-                  "resources.resourcesServices", "TestMethod"))
+                  "resources.resourcesServices", "WifiPrinting"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  resources.service.TestRequest.getDefaultInstance()))
+                  resources.service.PrintRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  resources.service.TestResponse.getDefaultInstance()))
-                  .setSchemaDescriptor(new resourcesServicesMethodDescriptorSupplier("TestMethod"))
+                  resources.service.PrintResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new resourcesServicesMethodDescriptorSupplier("WifiPrinting"))
                   .build();
           }
         }
      }
-     return getTestMethodMethod;
+     return getWifiPrintingMethod;
   }
 
   /**
@@ -88,20 +88,20 @@ public final class resourcesServicesGrpc {
 
     /**
      */
-    public void testMethod(resources.service.TestRequest request,
-        io.grpc.stub.StreamObserver<resources.service.TestResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getTestMethodMethod(), responseObserver);
+    public io.grpc.stub.StreamObserver<resources.service.PrintRequest> wifiPrinting(
+        io.grpc.stub.StreamObserver<resources.service.PrintResponse> responseObserver) {
+      return asyncUnimplementedStreamingCall(getWifiPrintingMethod(), responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
-            getTestMethodMethod(),
-            asyncUnaryCall(
+            getWifiPrintingMethod(),
+            asyncBidiStreamingCall(
               new MethodHandlers<
-                resources.service.TestRequest,
-                resources.service.TestResponse>(
-                  this, METHODID_TEST_METHOD)))
+                resources.service.PrintRequest,
+                resources.service.PrintResponse>(
+                  this, METHODID_WIFI_PRINTING)))
           .build();
     }
   }
@@ -126,10 +126,10 @@ public final class resourcesServicesGrpc {
 
     /**
      */
-    public void testMethod(resources.service.TestRequest request,
-        io.grpc.stub.StreamObserver<resources.service.TestResponse> responseObserver) {
-      asyncUnaryCall(
-          getChannel().newCall(getTestMethodMethod(), getCallOptions()), request, responseObserver);
+    public io.grpc.stub.StreamObserver<resources.service.PrintRequest> wifiPrinting(
+        io.grpc.stub.StreamObserver<resources.service.PrintResponse> responseObserver) {
+      return asyncBidiStreamingCall(
+          getChannel().newCall(getWifiPrintingMethod(), getCallOptions()), responseObserver);
     }
   }
 
@@ -150,13 +150,6 @@ public final class resourcesServicesGrpc {
         io.grpc.CallOptions callOptions) {
       return new resourcesServicesBlockingStub(channel, callOptions);
     }
-
-    /**
-     */
-    public resources.service.TestResponse testMethod(resources.service.TestRequest request) {
-      return blockingUnaryCall(
-          getChannel(), getTestMethodMethod(), getCallOptions(), request);
-    }
   }
 
   /**
@@ -176,17 +169,9 @@ public final class resourcesServicesGrpc {
         io.grpc.CallOptions callOptions) {
       return new resourcesServicesFutureStub(channel, callOptions);
     }
-
-    /**
-     */
-    public com.google.common.util.concurrent.ListenableFuture<resources.service.TestResponse> testMethod(
-        resources.service.TestRequest request) {
-      return futureUnaryCall(
-          getChannel().newCall(getTestMethodMethod(), getCallOptions()), request);
-    }
   }
 
-  private static final int METHODID_TEST_METHOD = 0;
+  private static final int METHODID_WIFI_PRINTING = 0;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -205,10 +190,6 @@ public final class resourcesServicesGrpc {
     @java.lang.SuppressWarnings("unchecked")
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
-        case METHODID_TEST_METHOD:
-          serviceImpl.testMethod((resources.service.TestRequest) request,
-              (io.grpc.stub.StreamObserver<resources.service.TestResponse>) responseObserver);
-          break;
         default:
           throw new AssertionError();
       }
@@ -219,6 +200,9 @@ public final class resourcesServicesGrpc {
     public io.grpc.stub.StreamObserver<Req> invoke(
         io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
+        case METHODID_WIFI_PRINTING:
+          return (io.grpc.stub.StreamObserver<Req>) serviceImpl.wifiPrinting(
+              (io.grpc.stub.StreamObserver<resources.service.PrintResponse>) responseObserver);
         default:
           throw new AssertionError();
       }
@@ -270,7 +254,7 @@ public final class resourcesServicesGrpc {
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new resourcesServicesFileDescriptorSupplier())
-              .addMethod(getTestMethodMethod())
+              .addMethod(getWifiPrintingMethod())
               .build();
         }
       }
