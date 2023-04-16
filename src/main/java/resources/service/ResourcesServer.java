@@ -26,6 +26,7 @@ public class ResourcesServer extends resourcesServicesImplBase{
 					.addService(resourcesServices)
 					.build()
 					.start();
+			logger.info("Server started, listening on " + port);
 			server.awaitTermination();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -36,19 +37,20 @@ public class ResourcesServer extends resourcesServicesImplBase{
 			e.printStackTrace();
 		}
 	    
-	    logger.info("Server started, listening on " + port);
+	    
 	    		    
 	}
 	
 	@Override
-	public StreamObserver<PrintRequest> wifiPrinting(final StreamObserver<PrintResponse> responseObserver){
+	public StreamObserver<PrintRequest> wifiPrinting(StreamObserver<PrintResponse> responseObserver){
 		return new StreamObserver<PrintRequest>() {
 		
 			@Override
 			public void onNext(PrintRequest request) {
 				// TODO Auto-generated method stub
 				System.out.println("Document ID: "+ request.getDocId()+ " is printing..");
-				
+//				PrintResponse response = PrintResponse.newBuilder().setIsPrinted("Printing complete.").setDocId(2).build();
+				responseObserver.onNext(null);
 			}
 
 			@Override
@@ -61,10 +63,36 @@ public class ResourcesServer extends resourcesServicesImplBase{
 			@Override
 			public void onCompleted() {
 				// TODO Auto-generated method stub
-				PrintResponse response = PrintResponse.newBuilder()
-						.setIsPrinted("Printing Complete")
-						.build();
-				responseObserver.onNext(response);
+				System.out.println("Finished printing documents");
+				responseObserver.onCompleted();
+				
+			}
+		};
+	}
+	
+	@Override
+	public StreamObserver<RoomRequest> roomAvailability(StreamObserver<RoomResponse> responseObserver){
+		return new StreamObserver<RoomRequest>() {
+		Integer[] roomsBooked = {2,3,5,7};
+			@Override
+			public void onNext(RoomRequest request) {
+				
+				// TODO Auto-generated method stub
+				System.out.println("Room selected "+ request.getRoomNumber());
+				
+			}
+
+			@Override
+			public void onError(Throwable t) {
+				// TODO Auto-generated method stub
+				logger.info("Error occured with roomAvailability on server file.");
+				
+			}
+
+			@Override
+			public void onCompleted() {
+				// TODO Auto-generated method stub
+				System.out.println("Room availability stream finished.");
 				responseObserver.onCompleted();
 				
 			}

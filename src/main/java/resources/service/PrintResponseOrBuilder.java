@@ -18,12 +18,7 @@ public interface PrintResponseOrBuilder extends
       getIsPrintedBytes();
 
   /**
-   * <code>string docId = 2;</code>
+   * <code>int32 docId = 2;</code>
    */
-  java.lang.String getDocId();
-  /**
-   * <code>string docId = 2;</code>
-   */
-  com.google.protobuf.ByteString
-      getDocIdBytes();
+  int getDocId();
 }

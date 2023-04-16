@@ -24,6 +24,16 @@ public final class ResourcesImpl {
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_resources_PrintResponse_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_resources_RoomRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_resources_RoomRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_resources_RoomResponse_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_resources_RoomResponse_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -35,11 +45,14 @@ public final class ResourcesImpl {
     java.lang.String[] descriptorData = {
       "\n\017resources.proto\022\tresources\"\035\n\014PrintReq" +
       "uest\022\r\n\005docId\030\001 \001(\005\"1\n\rPrintResponse\022\021\n\t" +
-      "isPrinted\030\001 \001(\t\022\r\n\005docId\030\002 \001(\t2\\\n\021resour" +
-      "cesServices\022G\n\014WifiPrinting\022\027.resources." +
-      "PrintRequest\032\030.resources.PrintResponse\"\000" +
-      "(\0010\001B$\n\021resources.serviceB\rResourcesImpl" +
-      "P\001b\006proto3"
+      "isPrinted\030\001 \001(\t\022\r\n\005docId\030\002 \001(\005\"!\n\013RoomRe" +
+      "quest\022\022\n\nroomNumber\030\001 \001(\005\"\"\n\014RoomRespons" +
+      "e\022\022\n\nroomStatus\030\002 \001(\t2\247\001\n\021resourcesServi" +
+      "ces\022G\n\014WifiPrinting\022\027.resources.PrintReq" +
+      "uest\032\030.resources.PrintResponse\"\000(\0010\001\022I\n\020" +
+      "RoomAvailability\022\026.resources.RoomRequest" +
+      "\032\027.resources.RoomResponse\"\000(\0010\001B$\n\021resou" +
+      "rces.serviceB\rResourcesImplP\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -65,6 +78,18 @@ public final class ResourcesImpl {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_resources_PrintResponse_descriptor,
         new java.lang.String[] { "IsPrinted", "DocId", });
+    internal_static_resources_RoomRequest_descriptor =
+      getDescriptor().getMessageTypes().get(2);
+    internal_static_resources_RoomRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_resources_RoomRequest_descriptor,
+        new java.lang.String[] { "RoomNumber", });
+    internal_static_resources_RoomResponse_descriptor =
+      getDescriptor().getMessageTypes().get(3);
+    internal_static_resources_RoomResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_resources_RoomResponse_descriptor,
+        new java.lang.String[] { "RoomStatus", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

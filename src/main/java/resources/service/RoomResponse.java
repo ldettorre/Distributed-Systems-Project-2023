@@ -4,20 +4,19 @@
 package resources.service;
 
 /**
- * Protobuf type {@code resources.PrintResponse}
+ * Protobuf type {@code resources.RoomResponse}
  */
-public  final class PrintResponse extends
+public  final class RoomResponse extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:resources.PrintResponse)
-    PrintResponseOrBuilder {
+    // @@protoc_insertion_point(message_implements:resources.RoomResponse)
+    RoomResponseOrBuilder {
 private static final long serialVersionUID = 0L;
-  // Use PrintResponse.newBuilder() to construct.
-  private PrintResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+  // Use RoomResponse.newBuilder() to construct.
+  private RoomResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
-  private PrintResponse() {
-    isPrinted_ = "";
-    docId_ = 0;
+  private RoomResponse() {
+    roomStatus_ = "";
   }
 
   @java.lang.Override
@@ -25,7 +24,7 @@ private static final long serialVersionUID = 0L;
   getUnknownFields() {
     return this.unknownFields;
   }
-  private PrintResponse(
+  private RoomResponse(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -44,15 +43,10 @@ private static final long serialVersionUID = 0L;
           case 0:
             done = true;
             break;
-          case 10: {
+          case 18: {
             java.lang.String s = input.readStringRequireUtf8();
 
-            isPrinted_ = s;
-            break;
-          }
-          case 16: {
-
-            docId_ = input.readInt32();
+            roomStatus_ = s;
             break;
           }
           default: {
@@ -76,58 +70,49 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return resources.service.ResourcesImpl.internal_static_resources_PrintResponse_descriptor;
+    return resources.service.ResourcesImpl.internal_static_resources_RoomResponse_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return resources.service.ResourcesImpl.internal_static_resources_PrintResponse_fieldAccessorTable
+    return resources.service.ResourcesImpl.internal_static_resources_RoomResponse_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            resources.service.PrintResponse.class, resources.service.PrintResponse.Builder.class);
+            resources.service.RoomResponse.class, resources.service.RoomResponse.Builder.class);
   }
 
-  public static final int ISPRINTED_FIELD_NUMBER = 1;
-  private volatile java.lang.Object isPrinted_;
+  public static final int ROOMSTATUS_FIELD_NUMBER = 2;
+  private volatile java.lang.Object roomStatus_;
   /**
-   * <code>string isPrinted = 1;</code>
+   * <code>string roomStatus = 2;</code>
    */
-  public java.lang.String getIsPrinted() {
-    java.lang.Object ref = isPrinted_;
+  public java.lang.String getRoomStatus() {
+    java.lang.Object ref = roomStatus_;
     if (ref instanceof java.lang.String) {
       return (java.lang.String) ref;
     } else {
       com.google.protobuf.ByteString bs = 
           (com.google.protobuf.ByteString) ref;
       java.lang.String s = bs.toStringUtf8();
-      isPrinted_ = s;
+      roomStatus_ = s;
       return s;
     }
   }
   /**
-   * <code>string isPrinted = 1;</code>
+   * <code>string roomStatus = 2;</code>
    */
   public com.google.protobuf.ByteString
-      getIsPrintedBytes() {
-    java.lang.Object ref = isPrinted_;
+      getRoomStatusBytes() {
+    java.lang.Object ref = roomStatus_;
     if (ref instanceof java.lang.String) {
       com.google.protobuf.ByteString b = 
           com.google.protobuf.ByteString.copyFromUtf8(
               (java.lang.String) ref);
-      isPrinted_ = b;
+      roomStatus_ = b;
       return b;
     } else {
       return (com.google.protobuf.ByteString) ref;
     }
-  }
-
-  public static final int DOCID_FIELD_NUMBER = 2;
-  private int docId_;
-  /**
-   * <code>int32 docId = 2;</code>
-   */
-  public int getDocId() {
-    return docId_;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -144,11 +129,8 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (!getIsPrintedBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 1, isPrinted_);
-    }
-    if (docId_ != 0) {
-      output.writeInt32(2, docId_);
+    if (!getRoomStatusBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 2, roomStatus_);
     }
     unknownFields.writeTo(output);
   }
@@ -159,12 +141,8 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (!getIsPrintedBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, isPrinted_);
-    }
-    if (docId_ != 0) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeInt32Size(2, docId_);
+    if (!getRoomStatusBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, roomStatus_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -176,16 +154,14 @@ private static final long serialVersionUID = 0L;
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof resources.service.PrintResponse)) {
+    if (!(obj instanceof resources.service.RoomResponse)) {
       return super.equals(obj);
     }
-    resources.service.PrintResponse other = (resources.service.PrintResponse) obj;
+    resources.service.RoomResponse other = (resources.service.RoomResponse) obj;
 
     boolean result = true;
-    result = result && getIsPrinted()
-        .equals(other.getIsPrinted());
-    result = result && (getDocId()
-        == other.getDocId());
+    result = result && getRoomStatus()
+        .equals(other.getRoomStatus());
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -197,78 +173,76 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + ISPRINTED_FIELD_NUMBER;
-    hash = (53 * hash) + getIsPrinted().hashCode();
-    hash = (37 * hash) + DOCID_FIELD_NUMBER;
-    hash = (53 * hash) + getDocId();
+    hash = (37 * hash) + ROOMSTATUS_FIELD_NUMBER;
+    hash = (53 * hash) + getRoomStatus().hashCode();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
   }
 
-  public static resources.service.PrintResponse parseFrom(
+  public static resources.service.RoomResponse parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static resources.service.PrintResponse parseFrom(
+  public static resources.service.RoomResponse parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static resources.service.PrintResponse parseFrom(
+  public static resources.service.RoomResponse parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static resources.service.PrintResponse parseFrom(
+  public static resources.service.RoomResponse parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static resources.service.PrintResponse parseFrom(byte[] data)
+  public static resources.service.RoomResponse parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static resources.service.PrintResponse parseFrom(
+  public static resources.service.RoomResponse parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static resources.service.PrintResponse parseFrom(java.io.InputStream input)
+  public static resources.service.RoomResponse parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static resources.service.PrintResponse parseFrom(
+  public static resources.service.RoomResponse parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
-  public static resources.service.PrintResponse parseDelimitedFrom(java.io.InputStream input)
+  public static resources.service.RoomResponse parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
-  public static resources.service.PrintResponse parseDelimitedFrom(
+  public static resources.service.RoomResponse parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static resources.service.PrintResponse parseFrom(
+  public static resources.service.RoomResponse parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static resources.service.PrintResponse parseFrom(
+  public static resources.service.RoomResponse parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -281,7 +255,7 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(resources.service.PrintResponse prototype) {
+  public static Builder newBuilder(resources.service.RoomResponse prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   @java.lang.Override
@@ -297,26 +271,26 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code resources.PrintResponse}
+   * Protobuf type {@code resources.RoomResponse}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:resources.PrintResponse)
-      resources.service.PrintResponseOrBuilder {
+      // @@protoc_insertion_point(builder_implements:resources.RoomResponse)
+      resources.service.RoomResponseOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return resources.service.ResourcesImpl.internal_static_resources_PrintResponse_descriptor;
+      return resources.service.ResourcesImpl.internal_static_resources_RoomResponse_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return resources.service.ResourcesImpl.internal_static_resources_PrintResponse_fieldAccessorTable
+      return resources.service.ResourcesImpl.internal_static_resources_RoomResponse_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              resources.service.PrintResponse.class, resources.service.PrintResponse.Builder.class);
+              resources.service.RoomResponse.class, resources.service.RoomResponse.Builder.class);
     }
 
-    // Construct using resources.service.PrintResponse.newBuilder()
+    // Construct using resources.service.RoomResponse.newBuilder()
     private Builder() {
       maybeForceBuilderInitialization();
     }
@@ -334,9 +308,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      isPrinted_ = "";
-
-      docId_ = 0;
+      roomStatus_ = "";
 
       return this;
     }
@@ -344,17 +316,17 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return resources.service.ResourcesImpl.internal_static_resources_PrintResponse_descriptor;
+      return resources.service.ResourcesImpl.internal_static_resources_RoomResponse_descriptor;
     }
 
     @java.lang.Override
-    public resources.service.PrintResponse getDefaultInstanceForType() {
-      return resources.service.PrintResponse.getDefaultInstance();
+    public resources.service.RoomResponse getDefaultInstanceForType() {
+      return resources.service.RoomResponse.getDefaultInstance();
     }
 
     @java.lang.Override
-    public resources.service.PrintResponse build() {
-      resources.service.PrintResponse result = buildPartial();
+    public resources.service.RoomResponse build() {
+      resources.service.RoomResponse result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
@@ -362,10 +334,9 @@ private static final long serialVersionUID = 0L;
     }
 
     @java.lang.Override
-    public resources.service.PrintResponse buildPartial() {
-      resources.service.PrintResponse result = new resources.service.PrintResponse(this);
-      result.isPrinted_ = isPrinted_;
-      result.docId_ = docId_;
+    public resources.service.RoomResponse buildPartial() {
+      resources.service.RoomResponse result = new resources.service.RoomResponse(this);
+      result.roomStatus_ = roomStatus_;
       onBuilt();
       return result;
     }
@@ -404,22 +375,19 @@ private static final long serialVersionUID = 0L;
     }
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof resources.service.PrintResponse) {
-        return mergeFrom((resources.service.PrintResponse)other);
+      if (other instanceof resources.service.RoomResponse) {
+        return mergeFrom((resources.service.RoomResponse)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(resources.service.PrintResponse other) {
-      if (other == resources.service.PrintResponse.getDefaultInstance()) return this;
-      if (!other.getIsPrinted().isEmpty()) {
-        isPrinted_ = other.isPrinted_;
+    public Builder mergeFrom(resources.service.RoomResponse other) {
+      if (other == resources.service.RoomResponse.getDefaultInstance()) return this;
+      if (!other.getRoomStatus().isEmpty()) {
+        roomStatus_ = other.roomStatus_;
         onChanged();
-      }
-      if (other.getDocId() != 0) {
-        setDocId(other.getDocId());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -436,11 +404,11 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      resources.service.PrintResponse parsedMessage = null;
+      resources.service.RoomResponse parsedMessage = null;
       try {
         parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (resources.service.PrintResponse) e.getUnfinishedMessage();
+        parsedMessage = (resources.service.RoomResponse) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
         if (parsedMessage != null) {
@@ -450,97 +418,71 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private java.lang.Object isPrinted_ = "";
+    private java.lang.Object roomStatus_ = "";
     /**
-     * <code>string isPrinted = 1;</code>
+     * <code>string roomStatus = 2;</code>
      */
-    public java.lang.String getIsPrinted() {
-      java.lang.Object ref = isPrinted_;
+    public java.lang.String getRoomStatus() {
+      java.lang.Object ref = roomStatus_;
       if (!(ref instanceof java.lang.String)) {
         com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        isPrinted_ = s;
+        roomStatus_ = s;
         return s;
       } else {
         return (java.lang.String) ref;
       }
     }
     /**
-     * <code>string isPrinted = 1;</code>
+     * <code>string roomStatus = 2;</code>
      */
     public com.google.protobuf.ByteString
-        getIsPrintedBytes() {
-      java.lang.Object ref = isPrinted_;
+        getRoomStatusBytes() {
+      java.lang.Object ref = roomStatus_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        isPrinted_ = b;
+        roomStatus_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
       }
     }
     /**
-     * <code>string isPrinted = 1;</code>
+     * <code>string roomStatus = 2;</code>
      */
-    public Builder setIsPrinted(
+    public Builder setRoomStatus(
         java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
   
-      isPrinted_ = value;
+      roomStatus_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>string isPrinted = 1;</code>
+     * <code>string roomStatus = 2;</code>
      */
-    public Builder clearIsPrinted() {
+    public Builder clearRoomStatus() {
       
-      isPrinted_ = getDefaultInstance().getIsPrinted();
+      roomStatus_ = getDefaultInstance().getRoomStatus();
       onChanged();
       return this;
     }
     /**
-     * <code>string isPrinted = 1;</code>
+     * <code>string roomStatus = 2;</code>
      */
-    public Builder setIsPrintedBytes(
+    public Builder setRoomStatusBytes(
         com.google.protobuf.ByteString value) {
       if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
       
-      isPrinted_ = value;
-      onChanged();
-      return this;
-    }
-
-    private int docId_ ;
-    /**
-     * <code>int32 docId = 2;</code>
-     */
-    public int getDocId() {
-      return docId_;
-    }
-    /**
-     * <code>int32 docId = 2;</code>
-     */
-    public Builder setDocId(int value) {
-      
-      docId_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>int32 docId = 2;</code>
-     */
-    public Builder clearDocId() {
-      
-      docId_ = 0;
+      roomStatus_ = value;
       onChanged();
       return this;
     }
@@ -557,41 +499,41 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:resources.PrintResponse)
+    // @@protoc_insertion_point(builder_scope:resources.RoomResponse)
   }
 
-  // @@protoc_insertion_point(class_scope:resources.PrintResponse)
-  private static final resources.service.PrintResponse DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:resources.RoomResponse)
+  private static final resources.service.RoomResponse DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new resources.service.PrintResponse();
+    DEFAULT_INSTANCE = new resources.service.RoomResponse();
   }
 
-  public static resources.service.PrintResponse getDefaultInstance() {
+  public static resources.service.RoomResponse getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  private static final com.google.protobuf.Parser<PrintResponse>
-      PARSER = new com.google.protobuf.AbstractParser<PrintResponse>() {
+  private static final com.google.protobuf.Parser<RoomResponse>
+      PARSER = new com.google.protobuf.AbstractParser<RoomResponse>() {
     @java.lang.Override
-    public PrintResponse parsePartialFrom(
+    public RoomResponse parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return new PrintResponse(input, extensionRegistry);
+      return new RoomResponse(input, extensionRegistry);
     }
   };
 
-  public static com.google.protobuf.Parser<PrintResponse> parser() {
+  public static com.google.protobuf.Parser<RoomResponse> parser() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.google.protobuf.Parser<PrintResponse> getParserForType() {
+  public com.google.protobuf.Parser<RoomResponse> getParserForType() {
     return PARSER;
   }
 
   @java.lang.Override
-  public resources.service.PrintResponse getDefaultInstanceForType() {
+  public resources.service.RoomResponse getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 

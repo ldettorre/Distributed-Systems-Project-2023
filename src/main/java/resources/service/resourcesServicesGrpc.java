@@ -59,6 +59,38 @@ public final class resourcesServicesGrpc {
      return getWifiPrintingMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<resources.service.RoomRequest,
+      resources.service.RoomResponse> getRoomAvailabilityMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "RoomAvailability",
+      requestType = resources.service.RoomRequest.class,
+      responseType = resources.service.RoomResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.BIDI_STREAMING)
+  public static io.grpc.MethodDescriptor<resources.service.RoomRequest,
+      resources.service.RoomResponse> getRoomAvailabilityMethod() {
+    io.grpc.MethodDescriptor<resources.service.RoomRequest, resources.service.RoomResponse> getRoomAvailabilityMethod;
+    if ((getRoomAvailabilityMethod = resourcesServicesGrpc.getRoomAvailabilityMethod) == null) {
+      synchronized (resourcesServicesGrpc.class) {
+        if ((getRoomAvailabilityMethod = resourcesServicesGrpc.getRoomAvailabilityMethod) == null) {
+          resourcesServicesGrpc.getRoomAvailabilityMethod = getRoomAvailabilityMethod = 
+              io.grpc.MethodDescriptor.<resources.service.RoomRequest, resources.service.RoomResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.BIDI_STREAMING)
+              .setFullMethodName(generateFullMethodName(
+                  "resources.resourcesServices", "RoomAvailability"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  resources.service.RoomRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  resources.service.RoomResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new resourcesServicesMethodDescriptorSupplier("RoomAvailability"))
+                  .build();
+          }
+        }
+     }
+     return getRoomAvailabilityMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -93,6 +125,13 @@ public final class resourcesServicesGrpc {
       return asyncUnimplementedStreamingCall(getWifiPrintingMethod(), responseObserver);
     }
 
+    /**
+     */
+    public io.grpc.stub.StreamObserver<resources.service.RoomRequest> roomAvailability(
+        io.grpc.stub.StreamObserver<resources.service.RoomResponse> responseObserver) {
+      return asyncUnimplementedStreamingCall(getRoomAvailabilityMethod(), responseObserver);
+    }
+
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -102,6 +141,13 @@ public final class resourcesServicesGrpc {
                 resources.service.PrintRequest,
                 resources.service.PrintResponse>(
                   this, METHODID_WIFI_PRINTING)))
+          .addMethod(
+            getRoomAvailabilityMethod(),
+            asyncBidiStreamingCall(
+              new MethodHandlers<
+                resources.service.RoomRequest,
+                resources.service.RoomResponse>(
+                  this, METHODID_ROOM_AVAILABILITY)))
           .build();
     }
   }
@@ -130,6 +176,14 @@ public final class resourcesServicesGrpc {
         io.grpc.stub.StreamObserver<resources.service.PrintResponse> responseObserver) {
       return asyncBidiStreamingCall(
           getChannel().newCall(getWifiPrintingMethod(), getCallOptions()), responseObserver);
+    }
+
+    /**
+     */
+    public io.grpc.stub.StreamObserver<resources.service.RoomRequest> roomAvailability(
+        io.grpc.stub.StreamObserver<resources.service.RoomResponse> responseObserver) {
+      return asyncBidiStreamingCall(
+          getChannel().newCall(getRoomAvailabilityMethod(), getCallOptions()), responseObserver);
     }
   }
 
@@ -172,6 +226,7 @@ public final class resourcesServicesGrpc {
   }
 
   private static final int METHODID_WIFI_PRINTING = 0;
+  private static final int METHODID_ROOM_AVAILABILITY = 1;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -203,6 +258,9 @@ public final class resourcesServicesGrpc {
         case METHODID_WIFI_PRINTING:
           return (io.grpc.stub.StreamObserver<Req>) serviceImpl.wifiPrinting(
               (io.grpc.stub.StreamObserver<resources.service.PrintResponse>) responseObserver);
+        case METHODID_ROOM_AVAILABILITY:
+          return (io.grpc.stub.StreamObserver<Req>) serviceImpl.roomAvailability(
+              (io.grpc.stub.StreamObserver<resources.service.RoomResponse>) responseObserver);
         default:
           throw new AssertionError();
       }
@@ -255,6 +313,7 @@ public final class resourcesServicesGrpc {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new resourcesServicesFileDescriptorSupplier())
               .addMethod(getWifiPrintingMethod())
+              .addMethod(getRoomAvailabilityMethod())
               .build();
         }
       }

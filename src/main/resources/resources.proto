@@ -8,6 +8,7 @@ package resources;
 
 service resourcesServices {
 	rpc WifiPrinting(stream PrintRequest) returns (stream PrintResponse){};
+	rpc RoomAvailability(stream RoomRequest) returns (stream RoomResponse){};
 }
 
 message PrintRequest {
@@ -16,7 +17,16 @@ message PrintRequest {
 
 message PrintResponse {
 	string isPrinted = 1;
-	string docId = 2;
+	int32 docId = 2;
 }
+
+message RoomRequest {
+	int32 roomNumber = 1;
+}
+
+message RoomResponse {
+	string roomStatus = 2;
+}
+
 
 
