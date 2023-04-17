@@ -1,14 +1,11 @@
 package resources.service;
 
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
+import java.util.ArrayList;
 import java.util.logging.Logger;
-
-import carpark.service.AvailRequest;
 import resources.service.resourcesServicesGrpc.resourcesServicesImplBase;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
-import io.grpc.ServerServiceDefinition;
 import io.grpc.stub.StreamObserver;
 
 public class ResourcesServer extends resourcesServicesImplBase{
@@ -37,20 +34,21 @@ public class ResourcesServer extends resourcesServicesImplBase{
 			e.printStackTrace();
 		}
 	    
-	    
 	    		    
 	}
 	
 	@Override
 	public StreamObserver<PrintRequest> wifiPrinting(StreamObserver<PrintResponse> responseObserver){
 		return new StreamObserver<PrintRequest>() {
-		
+		ArrayList<Integer> docsToPrint = new ArrayList<Integer>();
 			@Override
 			public void onNext(PrintRequest request) {
 				// TODO Auto-generated method stub
+				docsToPrint.add(request.getDocId());
 				System.out.println("Document ID: "+ request.getDocId()+ " is printing..");
-//				PrintResponse response = PrintResponse.newBuilder().setIsPrinted("Printing complete.").setDocId(2).build();
-				responseObserver.onNext(null);
+				int documentPrinting = request.getDocId();
+				PrintResponse response = PrintResponse.newBuilder().setIsPrinted("Printing complete.").setDocId(documentPrinting).build();
+				responseObserver.onNext(response);
 			}
 
 			@Override
@@ -63,7 +61,7 @@ public class ResourcesServer extends resourcesServicesImplBase{
 			@Override
 			public void onCompleted() {
 				// TODO Auto-generated method stub
-				System.out.println("Finished printing documents");
+				System.out.println("Finished printing " + docsToPrint.size() + " documents");
 				responseObserver.onCompleted();
 				
 			}
@@ -73,13 +71,12 @@ public class ResourcesServer extends resourcesServicesImplBase{
 	@Override
 	public StreamObserver<RoomRequest> roomAvailability(StreamObserver<RoomResponse> responseObserver){
 		return new StreamObserver<RoomRequest>() {
-		Integer[] roomsBooked = {2,3,5,7};
 			@Override
 			public void onNext(RoomRequest request) {
-				
 				// TODO Auto-generated method stub
 				System.out.println("Room selected "+ request.getRoomNumber());
-				
+				RoomResponse response = RoomResponse.newBuilder().setRoomStatus("Booked").build();
+				responseObserver.onNext(response);
 			}
 
 			@Override

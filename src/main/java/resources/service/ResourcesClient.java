@@ -1,6 +1,6 @@
 package resources.service;
 
-import java.util.concurrent.TimeUnit;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import io.grpc.ManagedChannel;
@@ -54,10 +54,15 @@ public class ResourcesClient {
 		
 		try {
 			requestObserver.onNext(PrintRequest.newBuilder().setDocId(1).build());
+			Thread.sleep(500);
 			requestObserver.onNext(PrintRequest.newBuilder().setDocId(2).build());
+			Thread.sleep(500);
 			requestObserver.onNext(PrintRequest.newBuilder().setDocId(3).build());
+			Thread.sleep(500);
 			requestObserver.onNext(PrintRequest.newBuilder().setDocId(4).build());
+			Thread.sleep(500);
 			requestObserver.onNext(PrintRequest.newBuilder().setDocId(5).build());
+			Thread.sleep(500);
 			
 			requestObserver.onCompleted();
 			Thread.sleep(1000);
@@ -69,11 +74,12 @@ public class ResourcesClient {
 	
 	private static void roomAvailability() throws InterruptedException {
 		StreamObserver<RoomResponse> responseObserver = new StreamObserver<RoomResponse>() {
-
+			
 			@Override
 			public void onNext(RoomResponse response) {
 				// TODO Auto-generated method stub
-				System.out.println("Requesting Room.");
+				System.out.println("Room status: "+ response.getRoomStatus());
+				
 				
 			}
 
