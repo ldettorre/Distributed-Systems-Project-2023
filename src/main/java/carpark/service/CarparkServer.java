@@ -1,9 +1,7 @@
 package carpark.service;
 
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
-
 import carpark.service.carparkServicesGrpc.carparkServicesImplBase;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
@@ -25,6 +23,7 @@ public class CarparkServer extends carparkServicesImplBase{
 					.addService(carparkServices)
 					.build()
 					.start();
+			logger.info("Server started, listening on " + port);
 			server.awaitTermination();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -34,8 +33,6 @@ public class CarparkServer extends carparkServicesImplBase{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	    
-	    logger.info("Server started, listening on " + port);
 	    		    
 	}
 	
@@ -103,6 +100,7 @@ public class CarparkServer extends carparkServicesImplBase{
 		public void onCompleted() {
 			// TODO Auto-generated method stub
 			AvailResponse response = AvailResponse.newBuilder().setSumAvail(availSpaces).build();
+			System.out.println("Number of available spaces: "+ response.getSumAvail());
 			responseObserver.onNext(response);
 			responseObserver.onCompleted();
 		}
