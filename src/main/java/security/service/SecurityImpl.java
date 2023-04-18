@@ -33,12 +33,12 @@ public final class SecurityImpl {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\016security.proto\022\010security\"!\n\rUnlockRequ" +
-      "est\022\020\n\010idNumber\030\001 \001(\t\"!\n\016UnlockResponse\022" +
-      "\017\n\007message\030\001 \001(\t2U\n\020securityServices\022A\n\n" +
-      "unlockDoor\022\027.security.UnlockRequest\032\030.se" +
-      "curity.UnlockResponse\"\000B\"\n\020security.serv" +
-      "iceB\014SecurityImplP\001b\006proto3"
+      "\n\016security.proto\022\010security\"$\n\rUnlockRequ" +
+      "est\022\023\n\013codeEntered\030\001 \001(\005\"$\n\016UnlockRespon" +
+      "se\022\022\n\nlockStatus\030\001 \001(\t2U\n\020securityServic" +
+      "es\022A\n\nUnlockDoor\022\027.security.UnlockReques" +
+      "t\032\030.security.UnlockResponse\"\000B\"\n\020securit" +
+      "y.serviceB\014SecurityImplP\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -57,13 +57,13 @@ public final class SecurityImpl {
     internal_static_security_UnlockRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_security_UnlockRequest_descriptor,
-        new java.lang.String[] { "IdNumber", });
+        new java.lang.String[] { "CodeEntered", });
     internal_static_security_UnlockResponse_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_security_UnlockResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_security_UnlockResponse_descriptor,
-        new java.lang.String[] { "Message", });
+        new java.lang.String[] { "LockStatus", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

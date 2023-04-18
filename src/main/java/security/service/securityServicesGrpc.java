@@ -31,7 +31,7 @@ public final class securityServicesGrpc {
       security.service.UnlockResponse> getUnlockDoorMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "unlockDoor",
+      fullMethodName = SERVICE_NAME + '/' + "UnlockDoor",
       requestType = security.service.UnlockRequest.class,
       responseType = security.service.UnlockResponse.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
@@ -45,13 +45,13 @@ public final class securityServicesGrpc {
               io.grpc.MethodDescriptor.<security.service.UnlockRequest, security.service.UnlockResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
-                  "security.securityServices", "unlockDoor"))
+                  "security.securityServices", "UnlockDoor"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   security.service.UnlockRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   security.service.UnlockResponse.getDefaultInstance()))
-                  .setSchemaDescriptor(new securityServicesMethodDescriptorSupplier("unlockDoor"))
+                  .setSchemaDescriptor(new securityServicesMethodDescriptorSupplier("UnlockDoor"))
                   .build();
           }
         }

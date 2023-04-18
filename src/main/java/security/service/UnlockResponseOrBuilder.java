@@ -8,12 +8,12 @@ public interface UnlockResponseOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>string message = 1;</code>
+   * <code>string lockStatus = 1;</code>
    */
-  java.lang.String getMessage();
+  java.lang.String getLockStatus();
   /**
-   * <code>string message = 1;</code>
+   * <code>string lockStatus = 1;</code>
    */
   com.google.protobuf.ByteString
-      getMessageBytes();
+      getLockStatusBytes();
 }

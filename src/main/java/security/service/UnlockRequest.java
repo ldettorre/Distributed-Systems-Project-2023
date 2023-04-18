@@ -16,7 +16,7 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private UnlockRequest() {
-    idNumber_ = "";
+    codeEntered_ = 0;
   }
 
   @java.lang.Override
@@ -43,10 +43,9 @@ private static final long serialVersionUID = 0L;
           case 0:
             done = true;
             break;
-          case 10: {
-            java.lang.String s = input.readStringRequireUtf8();
+          case 8: {
 
-            idNumber_ = s;
+            codeEntered_ = input.readInt32();
             break;
           }
           default: {
@@ -81,38 +80,13 @@ private static final long serialVersionUID = 0L;
             security.service.UnlockRequest.class, security.service.UnlockRequest.Builder.class);
   }
 
-  public static final int IDNUMBER_FIELD_NUMBER = 1;
-  private volatile java.lang.Object idNumber_;
+  public static final int CODEENTERED_FIELD_NUMBER = 1;
+  private int codeEntered_;
   /**
-   * <code>string idNumber = 1;</code>
+   * <code>int32 codeEntered = 1;</code>
    */
-  public java.lang.String getIdNumber() {
-    java.lang.Object ref = idNumber_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs = 
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      idNumber_ = s;
-      return s;
-    }
-  }
-  /**
-   * <code>string idNumber = 1;</code>
-   */
-  public com.google.protobuf.ByteString
-      getIdNumberBytes() {
-    java.lang.Object ref = idNumber_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      idNumber_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
+  public int getCodeEntered() {
+    return codeEntered_;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -129,8 +103,8 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (!getIdNumberBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 1, idNumber_);
+    if (codeEntered_ != 0) {
+      output.writeInt32(1, codeEntered_);
     }
     unknownFields.writeTo(output);
   }
@@ -141,8 +115,9 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (!getIdNumberBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, idNumber_);
+    if (codeEntered_ != 0) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt32Size(1, codeEntered_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -160,8 +135,8 @@ private static final long serialVersionUID = 0L;
     security.service.UnlockRequest other = (security.service.UnlockRequest) obj;
 
     boolean result = true;
-    result = result && getIdNumber()
-        .equals(other.getIdNumber());
+    result = result && (getCodeEntered()
+        == other.getCodeEntered());
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -173,8 +148,8 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + IDNUMBER_FIELD_NUMBER;
-    hash = (53 * hash) + getIdNumber().hashCode();
+    hash = (37 * hash) + CODEENTERED_FIELD_NUMBER;
+    hash = (53 * hash) + getCodeEntered();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -308,7 +283,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      idNumber_ = "";
+      codeEntered_ = 0;
 
       return this;
     }
@@ -336,7 +311,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public security.service.UnlockRequest buildPartial() {
       security.service.UnlockRequest result = new security.service.UnlockRequest(this);
-      result.idNumber_ = idNumber_;
+      result.codeEntered_ = codeEntered_;
       onBuilt();
       return result;
     }
@@ -385,9 +360,8 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(security.service.UnlockRequest other) {
       if (other == security.service.UnlockRequest.getDefaultInstance()) return this;
-      if (!other.getIdNumber().isEmpty()) {
-        idNumber_ = other.idNumber_;
-        onChanged();
+      if (other.getCodeEntered() != 0) {
+        setCodeEntered(other.getCodeEntered());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -418,71 +392,28 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private java.lang.Object idNumber_ = "";
+    private int codeEntered_ ;
     /**
-     * <code>string idNumber = 1;</code>
+     * <code>int32 codeEntered = 1;</code>
      */
-    public java.lang.String getIdNumber() {
-      java.lang.Object ref = idNumber_;
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        idNumber_ = s;
-        return s;
-      } else {
-        return (java.lang.String) ref;
-      }
+    public int getCodeEntered() {
+      return codeEntered_;
     }
     /**
-     * <code>string idNumber = 1;</code>
+     * <code>int32 codeEntered = 1;</code>
      */
-    public com.google.protobuf.ByteString
-        getIdNumberBytes() {
-      java.lang.Object ref = idNumber_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        idNumber_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-    /**
-     * <code>string idNumber = 1;</code>
-     */
-    public Builder setIdNumber(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      idNumber_ = value;
+    public Builder setCodeEntered(int value) {
+      
+      codeEntered_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>string idNumber = 1;</code>
+     * <code>int32 codeEntered = 1;</code>
      */
-    public Builder clearIdNumber() {
+    public Builder clearCodeEntered() {
       
-      idNumber_ = getDefaultInstance().getIdNumber();
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string idNumber = 1;</code>
-     */
-    public Builder setIdNumberBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      idNumber_ = value;
+      codeEntered_ = 0;
       onChanged();
       return this;
     }
