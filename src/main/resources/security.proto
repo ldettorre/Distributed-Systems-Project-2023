@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "security.service";
+option java_outer_classname = "SecurityImpl";
+ 
+package security;
+
+service securityServices {
+	rpc unlockDoor(UnlockRequest) returns (UnlockResponse){};
+}
+
+message UnlockRequest {
+	string idNumber = 1;
+}
+
+message UnlockResponse {
+	string message = 1;
+}
