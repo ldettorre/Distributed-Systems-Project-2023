@@ -1,6 +1,7 @@
 package security.service;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Logger;
 
 import io.grpc.Server;
@@ -70,5 +71,36 @@ public class SecurityServer extends securityServicesImplBase{
 			}
 		}
 		responseObserver.onCompleted();
+	}
+	
+	@Override
+	public StreamObserver<DetailsRequest> accessBuilding(StreamObserver<DetailsResponse> responseObserver){
+		return new StreamObserver<DetailsRequest>() {
+			ArrayList<String> signedIn = new ArrayList<String>();
+			@Override
+			public void onNext(DetailsRequest request) {
+				// TODO Auto-generated method stub
+				System.out.println("Adding record to signed in log on row: "+ signedIn.size()+1);
+				signedIn.add(request.getFloor()+"/"+request.getStaffLName()+request.getStaffFName()+"/"
+						+request.getFloor());
+			}
+
+			@Override
+			public void onError(Throwable t) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void onCompleted() {
+				// TODO Auto-generated method stub
+				DetailsResponse response = DetailsResponse.newBuilder()
+						.setMessage("*** Need to update response message ***").build();
+				responseObserver.onNext(response);
+
+				responseObserver.onCompleted();
+			}
+			
+		};
 	}
 }

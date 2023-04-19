@@ -2,7 +2,10 @@ carpark/service/AvailRequest.class
 security/service/EmUnlockResponse.class
 resources/service/ResourcesServer$1.class
 carpark/service/AccessResponse$1.class
+security/service/DetailsResponse.class
+security/service/DetailsResponseOrBuilder.class
 carpark/service/AccessResponse.class
+security/service/DetailsRequestOrBuilder.class
 resources/service/RoomResponse$1.class
 resources/service/resourcesServicesGrpc$resourcesServicesMethodDescriptorSupplier.class
 resources/service/ResourcesImpl$1.class
@@ -12,7 +15,9 @@ resources/service/RoomRequest$Builder.class
 carpark/service/AvailRequest$1.class
 security/service/UnlockResponse$Builder.class
 security/service/UnlockRequest.class
+security/service/DetailsRequest.class
 security/service/EmUnlockRequest$1.class
+security/service/SecurityServer$1.class
 resources/service/ResourcesImpl.class
 carpark/service/carparkServicesGrpc.class
 security/service/securityServicesGrpc$securityServicesBlockingStub.class
@@ -35,12 +40,14 @@ carpark/service/carparkServicesGrpc$carparkServicesImplBase.class
 resources/service/PrintRequest$1.class
 carpark/service/AvailRequest$Builder.class
 security/service/UnlockRequest$Builder.class
+security/service/SecurityClient$1.class
 resources/service/ResourcesServer$2.class
 carpark/service/LeaveRequestOrBuilder.class
 resources/service/resourcesServicesGrpc$resourcesServicesFutureStub.class
 carpark/service/CarparkServer.class
 carpark/service/AvailResponseOrBuilder.class
 carpark/service/LeaveRequest$1.class
+security/service/DetailsRequest$1.class
 security/service/EmUnlockResponseOrBuilder.class
 security/service/EmUnlockRequestOrBuilder.class
 carpark/service/carparkServicesGrpc$MethodHandlers.class
@@ -52,6 +59,7 @@ carpark/service/SpacesRequest$Builder.class
 resources/service/resourcesServicesGrpc$resourcesServicesBaseDescriptorSupplier.class
 resources/service/resourcesServicesGrpc$resourcesServicesImplBase.class
 security/service/securityServicesGrpc.class
+security/service/DetailsResponse$Builder.class
 carpark/service/LeaveResponse.class
 carpark/service/carparkServicesGrpc$carparkServicesFutureStub.class
 resources/service/RoomRequest.class
@@ -59,6 +67,7 @@ resources/service/RoomResponse.class
 security/service/UnlockResponse.class
 carpark/service/carparkServicesGrpc$carparkServicesBlockingStub.class
 security/service/SecurityServer.class
+security/service/DetailsResponse$1.class
 resources/service/resourcesServicesGrpc$1.class
 resources/service/ResourcesClient$2.class
 carpark/service/SpacesResponse.class
@@ -83,6 +92,7 @@ carpark/service/AccessResponseOrBuilder.class
 resources/service/RoomRequestOrBuilder.class
 resources/service/resourcesServicesGrpc$resourcesServicesBlockingStub.class
 carpark/service/AvailResponse.class
+security/service/DetailsRequest$Builder.class
 carpark/service/carparkServicesGrpc$carparkServicesBaseDescriptorSupplier.class
 security/service/UnlockRequest$1.class
 security/service/securityServicesGrpc$securityServicesImplBase.class

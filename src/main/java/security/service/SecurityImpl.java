@@ -34,6 +34,16 @@ public final class SecurityImpl {
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_security_EmUnlockResponse_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_security_DetailsRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_security_DetailsRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_security_DetailsResponse_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_security_DetailsResponse_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -47,12 +57,17 @@ public final class SecurityImpl {
       "est\022\023\n\013codeEntered\030\001 \001(\005\"$\n\016UnlockRespon" +
       "se\022\022\n\nlockStatus\030\001 \001(\t\"&\n\017EmUnlockReques" +
       "t\022\023\n\013codeEntered\030\001 \001(\005\"&\n\020EmUnlockRespon" +
-      "se\022\022\n\nlockStatus\030\001 \001(\t2\243\001\n\020securityServi" +
-      "ces\022A\n\nUnlockDoor\022\027.security.UnlockReque" +
-      "st\032\030.security.UnlockResponse\"\000\022L\n\017Emerge" +
-      "ncyUnlock\022\031.security.EmUnlockRequest\032\032.s" +
-      "ecurity.EmUnlockResponse\"\0000\001B\"\n\020security" +
-      ".serviceB\014SecurityImplP\001b\006proto3"
+      "se\022\022\n\nlockStatus\030\001 \001(\t\"X\n\016DetailsRequest" +
+      "\022\017\n\007staffID\030\001 \001(\005\022\022\n\nstaffFName\030\002 \001(\t\022\022\n" +
+      "\nstaffLName\030\003 \001(\t\022\r\n\005floor\030\004 \001(\005\"\"\n\017Deta" +
+      "ilsResponse\022\017\n\007message\030\001 \001(\t2\356\001\n\020securit" +
+      "yServices\022A\n\nUnlockDoor\022\027.security.Unloc" +
+      "kRequest\032\030.security.UnlockResponse\"\000\022L\n\017" +
+      "EmergencyUnlock\022\031.security.EmUnlockReque" +
+      "st\032\032.security.EmUnlockResponse\"\0000\001\022I\n\016Ac" +
+      "cessBuilding\022\030.security.DetailsRequest\032\031" +
+      ".security.DetailsResponse\"\000(\001B\"\n\020securit" +
+      "y.serviceB\014SecurityImplP\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -90,6 +105,18 @@ public final class SecurityImpl {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_security_EmUnlockResponse_descriptor,
         new java.lang.String[] { "LockStatus", });
+    internal_static_security_DetailsRequest_descriptor =
+      getDescriptor().getMessageTypes().get(4);
+    internal_static_security_DetailsRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_security_DetailsRequest_descriptor,
+        new java.lang.String[] { "StaffID", "StaffFName", "StaffLName", "Floor", });
+    internal_static_security_DetailsResponse_descriptor =
+      getDescriptor().getMessageTypes().get(5);
+    internal_static_security_DetailsResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_security_DetailsResponse_descriptor,
+        new java.lang.String[] { "Message", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

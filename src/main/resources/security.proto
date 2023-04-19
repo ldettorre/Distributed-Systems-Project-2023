@@ -9,6 +9,7 @@ package security;
 service securityServices {
 	rpc UnlockDoor(UnlockRequest) returns (UnlockResponse){};
 	rpc EmergencyUnlock(EmUnlockRequest) returns (stream EmUnlockResponse){};
+	rpc AccessBuilding(stream DetailsRequest) returns (DetailsResponse){};
 }
 
 message UnlockRequest {
@@ -25,4 +26,15 @@ message EmUnlockRequest {
 
 message EmUnlockResponse {
 	string lockStatus = 1;
+}
+
+message DetailsRequest {
+	int32 staffID = 1;
+	string staffFName = 2;
+	string staffLName = 3;
+	int32 floor = 4;
+}
+
+message DetailsResponse {
+	string message = 1;
 }

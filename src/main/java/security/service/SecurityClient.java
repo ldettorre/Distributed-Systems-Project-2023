@@ -30,6 +30,7 @@ public class SecurityClient {
 		
 		unlockDoor();
 		emergencyUnlock();
+		accessBuilding();
 	}
 	
 	private static void unlockDoor() {
@@ -50,6 +51,45 @@ public class SecurityClient {
 			Thread.sleep(1000);
 			EmUnlockResponse singleResponse = response.next();
 			System.out.println("Emergency Lock Status: "+ singleResponse.getLockStatus());
+		}
+		
+	}
+	
+	private static void accessBuilding() throws InterruptedException {
+		logger.info("Access Building Request Started");
+		StreamObserver<DetailsResponse> responseObserver = new StreamObserver<DetailsResponse>() {
+
+			@Override
+			public void onNext(DetailsResponse response) {
+				// TODO Auto-generated method stub
+				System.out.println("Access Result: "+ response.getMessage());
+				
+			}
+
+			@Override
+			public void onError(Throwable t) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void onCompleted() {
+				// TODO Auto-generated method stub
+				System.out.println("Access Stream Ended.");
+			}
+			
+		};
+		
+		StreamObserver<DetailsRequest> requestObserver = asyncStub.accessBuilding(responseObserver);
+		try {
+			requestObserver.onNext(DetailsRequest.newBuilder().setStaffID(21121).setStaffFName("John")
+					.setStaffLName("Johnson").setFloor(1).build());
+			Thread.sleep(500);
+			
+			requestObserver.onCompleted();
+		}
+		finally {
+			System.out.println("Staff Details Sent.");
 		}
 		
 	}

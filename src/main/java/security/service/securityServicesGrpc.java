@@ -91,6 +91,38 @@ public final class securityServicesGrpc {
      return getEmergencyUnlockMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<security.service.DetailsRequest,
+      security.service.DetailsResponse> getAccessBuildingMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "AccessBuilding",
+      requestType = security.service.DetailsRequest.class,
+      responseType = security.service.DetailsResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.CLIENT_STREAMING)
+  public static io.grpc.MethodDescriptor<security.service.DetailsRequest,
+      security.service.DetailsResponse> getAccessBuildingMethod() {
+    io.grpc.MethodDescriptor<security.service.DetailsRequest, security.service.DetailsResponse> getAccessBuildingMethod;
+    if ((getAccessBuildingMethod = securityServicesGrpc.getAccessBuildingMethod) == null) {
+      synchronized (securityServicesGrpc.class) {
+        if ((getAccessBuildingMethod = securityServicesGrpc.getAccessBuildingMethod) == null) {
+          securityServicesGrpc.getAccessBuildingMethod = getAccessBuildingMethod = 
+              io.grpc.MethodDescriptor.<security.service.DetailsRequest, security.service.DetailsResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.CLIENT_STREAMING)
+              .setFullMethodName(generateFullMethodName(
+                  "security.securityServices", "AccessBuilding"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  security.service.DetailsRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  security.service.DetailsResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new securityServicesMethodDescriptorSupplier("AccessBuilding"))
+                  .build();
+          }
+        }
+     }
+     return getAccessBuildingMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -132,6 +164,13 @@ public final class securityServicesGrpc {
       asyncUnimplementedUnaryCall(getEmergencyUnlockMethod(), responseObserver);
     }
 
+    /**
+     */
+    public io.grpc.stub.StreamObserver<security.service.DetailsRequest> accessBuilding(
+        io.grpc.stub.StreamObserver<security.service.DetailsResponse> responseObserver) {
+      return asyncUnimplementedStreamingCall(getAccessBuildingMethod(), responseObserver);
+    }
+
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -148,6 +187,13 @@ public final class securityServicesGrpc {
                 security.service.EmUnlockRequest,
                 security.service.EmUnlockResponse>(
                   this, METHODID_EMERGENCY_UNLOCK)))
+          .addMethod(
+            getAccessBuildingMethod(),
+            asyncClientStreamingCall(
+              new MethodHandlers<
+                security.service.DetailsRequest,
+                security.service.DetailsResponse>(
+                  this, METHODID_ACCESS_BUILDING)))
           .build();
     }
   }
@@ -184,6 +230,14 @@ public final class securityServicesGrpc {
         io.grpc.stub.StreamObserver<security.service.EmUnlockResponse> responseObserver) {
       asyncServerStreamingCall(
           getChannel().newCall(getEmergencyUnlockMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public io.grpc.stub.StreamObserver<security.service.DetailsRequest> accessBuilding(
+        io.grpc.stub.StreamObserver<security.service.DetailsResponse> responseObserver) {
+      return asyncClientStreamingCall(
+          getChannel().newCall(getAccessBuildingMethod(), getCallOptions()), responseObserver);
     }
   }
 
@@ -250,6 +304,7 @@ public final class securityServicesGrpc {
 
   private static final int METHODID_UNLOCK_DOOR = 0;
   private static final int METHODID_EMERGENCY_UNLOCK = 1;
+  private static final int METHODID_ACCESS_BUILDING = 2;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -286,6 +341,9 @@ public final class securityServicesGrpc {
     public io.grpc.stub.StreamObserver<Req> invoke(
         io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
+        case METHODID_ACCESS_BUILDING:
+          return (io.grpc.stub.StreamObserver<Req>) serviceImpl.accessBuilding(
+              (io.grpc.stub.StreamObserver<security.service.DetailsResponse>) responseObserver);
         default:
           throw new AssertionError();
       }
@@ -339,6 +397,7 @@ public final class securityServicesGrpc {
               .setSchemaDescriptor(new securityServicesFileDescriptorSupplier())
               .addMethod(getUnlockDoorMethod())
               .addMethod(getEmergencyUnlockMethod())
+              .addMethod(getAccessBuildingMethod())
               .build();
         }
       }
