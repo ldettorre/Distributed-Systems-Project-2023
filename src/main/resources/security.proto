@@ -8,6 +8,7 @@ package security;
 
 service securityServices {
 	rpc UnlockDoor(UnlockRequest) returns (UnlockResponse){};
+	rpc EmergencyUnlock(EmUnlockRequest) returns (stream EmUnlockResponse){};
 }
 
 message UnlockRequest {
@@ -15,5 +16,13 @@ message UnlockRequest {
 }
 
 message UnlockResponse {
+	string lockStatus = 1;
+}
+
+message EmUnlockRequest {
+	int32 codeEntered = 1;
+}
+
+message EmUnlockResponse {
 	string lockStatus = 1;
 }

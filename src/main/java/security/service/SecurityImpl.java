@@ -24,6 +24,16 @@ public final class SecurityImpl {
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_security_UnlockResponse_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_security_EmUnlockRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_security_EmUnlockRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_security_EmUnlockResponse_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_security_EmUnlockResponse_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -35,10 +45,14 @@ public final class SecurityImpl {
     java.lang.String[] descriptorData = {
       "\n\016security.proto\022\010security\"$\n\rUnlockRequ" +
       "est\022\023\n\013codeEntered\030\001 \001(\005\"$\n\016UnlockRespon" +
-      "se\022\022\n\nlockStatus\030\001 \001(\t2U\n\020securityServic" +
-      "es\022A\n\nUnlockDoor\022\027.security.UnlockReques" +
-      "t\032\030.security.UnlockResponse\"\000B\"\n\020securit" +
-      "y.serviceB\014SecurityImplP\001b\006proto3"
+      "se\022\022\n\nlockStatus\030\001 \001(\t\"&\n\017EmUnlockReques" +
+      "t\022\023\n\013codeEntered\030\001 \001(\005\"&\n\020EmUnlockRespon" +
+      "se\022\022\n\nlockStatus\030\001 \001(\t2\243\001\n\020securityServi" +
+      "ces\022A\n\nUnlockDoor\022\027.security.UnlockReque" +
+      "st\032\030.security.UnlockResponse\"\000\022L\n\017Emerge" +
+      "ncyUnlock\022\031.security.EmUnlockRequest\032\032.s" +
+      "ecurity.EmUnlockResponse\"\0000\001B\"\n\020security" +
+      ".serviceB\014SecurityImplP\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -63,6 +77,18 @@ public final class SecurityImpl {
     internal_static_security_UnlockResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_security_UnlockResponse_descriptor,
+        new java.lang.String[] { "LockStatus", });
+    internal_static_security_EmUnlockRequest_descriptor =
+      getDescriptor().getMessageTypes().get(2);
+    internal_static_security_EmUnlockRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_security_EmUnlockRequest_descriptor,
+        new java.lang.String[] { "CodeEntered", });
+    internal_static_security_EmUnlockResponse_descriptor =
+      getDescriptor().getMessageTypes().get(3);
+    internal_static_security_EmUnlockResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_security_EmUnlockResponse_descriptor,
         new java.lang.String[] { "LockStatus", });
   }
 

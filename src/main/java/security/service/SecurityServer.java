@@ -30,7 +30,6 @@ public class SecurityServer extends securityServicesImplBase{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 	}
 	
 	@Override
@@ -47,6 +46,29 @@ public class SecurityServer extends securityServicesImplBase{
 		System.out.println(lockStatus);
 		UnlockResponse response = UnlockResponse.newBuilder().setLockStatus(lockStatus).build();
 		responseObserver.onNext(response);
+		responseObserver.onCompleted();
+	}
+	
+	@Override
+	public void emergencyUnlock(EmUnlockRequest request, StreamObserver<EmUnlockResponse> responseObserver) {
+		logger.info("Receiving Emergency Unlock Request");
+		int count = 0;
+		String emLockStatus = "Inactive.";
+		while(count <= 10) {
+			count ++;
+			if(request.getCodeEntered() == 9999) {
+				emLockStatus = "Active. Evacuate immediately";
+			}
+			EmUnlockResponse response = EmUnlockResponse.newBuilder().setLockStatus(emLockStatus).build();
+			responseObserver.onNext(response);
+			
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		responseObserver.onCompleted();
 	}
 }

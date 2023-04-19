@@ -59,6 +59,38 @@ public final class securityServicesGrpc {
      return getUnlockDoorMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<security.service.EmUnlockRequest,
+      security.service.EmUnlockResponse> getEmergencyUnlockMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "EmergencyUnlock",
+      requestType = security.service.EmUnlockRequest.class,
+      responseType = security.service.EmUnlockResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
+  public static io.grpc.MethodDescriptor<security.service.EmUnlockRequest,
+      security.service.EmUnlockResponse> getEmergencyUnlockMethod() {
+    io.grpc.MethodDescriptor<security.service.EmUnlockRequest, security.service.EmUnlockResponse> getEmergencyUnlockMethod;
+    if ((getEmergencyUnlockMethod = securityServicesGrpc.getEmergencyUnlockMethod) == null) {
+      synchronized (securityServicesGrpc.class) {
+        if ((getEmergencyUnlockMethod = securityServicesGrpc.getEmergencyUnlockMethod) == null) {
+          securityServicesGrpc.getEmergencyUnlockMethod = getEmergencyUnlockMethod = 
+              io.grpc.MethodDescriptor.<security.service.EmUnlockRequest, security.service.EmUnlockResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
+              .setFullMethodName(generateFullMethodName(
+                  "security.securityServices", "EmergencyUnlock"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  security.service.EmUnlockRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  security.service.EmUnlockResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new securityServicesMethodDescriptorSupplier("EmergencyUnlock"))
+                  .build();
+          }
+        }
+     }
+     return getEmergencyUnlockMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -93,6 +125,13 @@ public final class securityServicesGrpc {
       asyncUnimplementedUnaryCall(getUnlockDoorMethod(), responseObserver);
     }
 
+    /**
+     */
+    public void emergencyUnlock(security.service.EmUnlockRequest request,
+        io.grpc.stub.StreamObserver<security.service.EmUnlockResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(getEmergencyUnlockMethod(), responseObserver);
+    }
+
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -102,6 +141,13 @@ public final class securityServicesGrpc {
                 security.service.UnlockRequest,
                 security.service.UnlockResponse>(
                   this, METHODID_UNLOCK_DOOR)))
+          .addMethod(
+            getEmergencyUnlockMethod(),
+            asyncServerStreamingCall(
+              new MethodHandlers<
+                security.service.EmUnlockRequest,
+                security.service.EmUnlockResponse>(
+                  this, METHODID_EMERGENCY_UNLOCK)))
           .build();
     }
   }
@@ -131,6 +177,14 @@ public final class securityServicesGrpc {
       asyncUnaryCall(
           getChannel().newCall(getUnlockDoorMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /**
+     */
+    public void emergencyUnlock(security.service.EmUnlockRequest request,
+        io.grpc.stub.StreamObserver<security.service.EmUnlockResponse> responseObserver) {
+      asyncServerStreamingCall(
+          getChannel().newCall(getEmergencyUnlockMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -156,6 +210,14 @@ public final class securityServicesGrpc {
     public security.service.UnlockResponse unlockDoor(security.service.UnlockRequest request) {
       return blockingUnaryCall(
           getChannel(), getUnlockDoorMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public java.util.Iterator<security.service.EmUnlockResponse> emergencyUnlock(
+        security.service.EmUnlockRequest request) {
+      return blockingServerStreamingCall(
+          getChannel(), getEmergencyUnlockMethod(), getCallOptions(), request);
     }
   }
 
@@ -187,6 +249,7 @@ public final class securityServicesGrpc {
   }
 
   private static final int METHODID_UNLOCK_DOOR = 0;
+  private static final int METHODID_EMERGENCY_UNLOCK = 1;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -208,6 +271,10 @@ public final class securityServicesGrpc {
         case METHODID_UNLOCK_DOOR:
           serviceImpl.unlockDoor((security.service.UnlockRequest) request,
               (io.grpc.stub.StreamObserver<security.service.UnlockResponse>) responseObserver);
+          break;
+        case METHODID_EMERGENCY_UNLOCK:
+          serviceImpl.emergencyUnlock((security.service.EmUnlockRequest) request,
+              (io.grpc.stub.StreamObserver<security.service.EmUnlockResponse>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -271,6 +338,7 @@ public final class securityServicesGrpc {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new securityServicesFileDescriptorSupplier())
               .addMethod(getUnlockDoorMethod())
+              .addMethod(getEmergencyUnlockMethod())
               .build();
         }
       }
