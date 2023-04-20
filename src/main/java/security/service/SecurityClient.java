@@ -58,12 +58,10 @@ public class SecurityClient {
 	private static void accessBuilding() throws InterruptedException {
 		logger.info("Access Building Request Started");
 		StreamObserver<DetailsResponse> responseObserver = new StreamObserver<DetailsResponse>() {
-
 			@Override
 			public void onNext(DetailsResponse response) {
 				// TODO Auto-generated method stub
-				System.out.println("Access Result: "+ response.getMessage());
-				
+				System.out.println(response.getMessage());
 			}
 
 			@Override
@@ -75,7 +73,7 @@ public class SecurityClient {
 			@Override
 			public void onCompleted() {
 				// TODO Auto-generated method stub
-				System.out.println("Access Stream Ended.");
+				System.out.println("Staff Details Sent..");
 			}
 			
 		};
@@ -84,13 +82,20 @@ public class SecurityClient {
 		try {
 			requestObserver.onNext(DetailsRequest.newBuilder().setStaffID(21121).setStaffFName("John")
 					.setStaffLName("Johnson").setFloor(1).build());
-			Thread.sleep(500);
+			Thread.sleep(1000);
+			
+			requestObserver.onNext(DetailsRequest.newBuilder().setStaffID(41144).setStaffFName("Liam")
+					.setStaffLName("Martin").setFloor(2).build());
+			Thread.sleep(1000);
+			requestObserver.onNext(DetailsRequest.newBuilder().setStaffID(32145).setStaffFName("Thomas")
+					.setStaffLName("Kent").setFloor(5).build());
+			Thread.sleep(1000);
 			
 			requestObserver.onCompleted();
+			
 		}
 		finally {
-			System.out.println("Staff Details Sent.");
+			Thread.sleep(1000);
 		}
-		
 	}
 }

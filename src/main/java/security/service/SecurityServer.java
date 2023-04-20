@@ -76,13 +76,15 @@ public class SecurityServer extends securityServicesImplBase{
 	@Override
 	public StreamObserver<DetailsRequest> accessBuilding(StreamObserver<DetailsResponse> responseObserver){
 		return new StreamObserver<DetailsRequest>() {
-			ArrayList<String> signedIn = new ArrayList<String>();
+			ArrayList<String> entryLog = new ArrayList<String>();
 			@Override
 			public void onNext(DetailsRequest request) {
 				// TODO Auto-generated method stub
-				System.out.println("Adding record to signed in log on row: "+ signedIn.size()+1);
-				signedIn.add(request.getFloor()+"/"+request.getStaffLName()+request.getStaffFName()+"/"
-						+request.getFloor());
+				String recordEntry = request.getStaffID()+"/"+request.getStaffLName()+request.getStaffFName()+"/"
+						+request.getFloor();
+				entryLog.add(recordEntry);
+				System.out.println("Adding record to signed in log on row: "+ entryLog.size());
+				System.out.println(recordEntry);
 			}
 
 			@Override
@@ -90,14 +92,13 @@ public class SecurityServer extends securityServicesImplBase{
 				// TODO Auto-generated method stub
 				
 			}
-
+			
 			@Override
 			public void onCompleted() {
 				// TODO Auto-generated method stub
-				DetailsResponse response = DetailsResponse.newBuilder()
-						.setMessage("*** Need to update response message ***").build();
+				DetailsResponse response = DetailsResponse.newBuilder().setMessage("Completed.").build();
+				System.out.println(response);
 				responseObserver.onNext(response);
-
 				responseObserver.onCompleted();
 			}
 			
