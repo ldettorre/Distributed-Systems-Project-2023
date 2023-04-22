@@ -39,6 +39,7 @@ public class ResourcesServer extends resourcesServicesImplBase{
 	
 	@Override
 	public StreamObserver<PrintRequest> wifiPrinting(StreamObserver<PrintResponse> responseObserver){
+		logger.info("Receiving Print Requests..");
 		return new StreamObserver<PrintRequest>() {
 		ArrayList<Integer> docsToPrint = new ArrayList<Integer>();
 			@Override
@@ -70,13 +71,28 @@ public class ResourcesServer extends resourcesServicesImplBase{
 	
 	@Override
 	public StreamObserver<RoomRequest> roomAvailability(StreamObserver<RoomResponse> responseObserver){
+		logger.info("Receiving Room Requests..");
 		return new StreamObserver<RoomRequest>() {
+			
+			ArrayList<Integer> bookedRooms = new ArrayList<Integer>();
+			String status = "";
 			@Override
 			public void onNext(RoomRequest request) {
 				// TODO Auto-generated method stub
-				System.out.println("Room selected "+ request.getRoomNumber());
-				RoomResponse response = RoomResponse.newBuilder().setRoomStatus("Booked").build();
+				System.out.println("Requesting booking for room: "+request.getRoomNumber());
+				if(bookedRooms.contains(request.getRoomNumber())){
+					System.out.println("Room Unavailable.");
+					status = "This room is not available.";
+					
+				}
+				else {
+					bookedRooms.add(request.getRoomNumber());
+					System.out.println("Room Available.");
+					status = "This room has been booked successfully.";
+				}
+				RoomResponse response = RoomResponse.newBuilder().setRoomStatus(status).build();
 				responseObserver.onNext(response);
+				
 			}
 
 			@Override

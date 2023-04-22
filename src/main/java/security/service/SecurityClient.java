@@ -32,8 +32,8 @@ public class SecurityClient {
 		// to the inputs from the GUI then pass them to the method
 		int userInput = 1234;
 		unlockDoor(userInput);
-//		emergencyUnlock();
-//		accessBuilding();
+		emergencyUnlock();
+		accessBuilding();
 	}
 	
 	// Unary 

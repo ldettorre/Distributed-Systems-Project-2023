@@ -27,9 +27,9 @@ public class CarparkClient {
 		asyncStub = carparkServicesGrpc.newStub(channel);
 		CarparkClient client = new CarparkClient();
 		
-//		accessCarpark();
-//		leaveCarpark();
-//		getAvailSpaces();
+		accessCarpark();
+		leaveCarpark();
+		getAvailSpaces();
 		getSumAvailSpaces();
 	}
 	
@@ -39,29 +39,29 @@ public class CarparkClient {
 		String idNumber = "2";
 		AccessRequest request = AccessRequest.newBuilder().setIdNumber(idNumber).build();
 		AccessResponse response = blockingStub.accessCarpark(request);
-		System.out.println("Requesting access for ID: "+ request.getIdNumber());
+		System.out.println("Requesting access for ID: "+ response.getMessage());
 	}
 	
 	
 	// Unary
 	public static void leaveCarpark() {
 		logger.info("leaveCarpark Started..");
-		LeaveRequest requestL = LeaveRequest.newBuilder().build();
-		LeaveResponse responseL = blockingStub.leaveCarpark(requestL);
-		System.out.println(responseL.getMessage());
+		LeaveRequest request = LeaveRequest.newBuilder().build();
+		LeaveResponse response = blockingStub.leaveCarpark(request);
+		System.out.println(response.getMessage());
 	}	
 	
 	
 	// Server Streaming
 	public static void getAvailSpaces() throws InterruptedException {
 		logger.info("getAvailSpaces Started..");
-		SpacesRequest requestS = SpacesRequest.newBuilder().build();
-		Iterator<SpacesResponse> responseS = blockingStub.getAvailSpaces(requestS);
+		SpacesRequest request = SpacesRequest.newBuilder().build();
+		Iterator<SpacesResponse> response = blockingStub.getAvailSpaces(request);
 		
-		while (responseS.hasNext()) {
+		while (response.hasNext()) {
 			Thread.sleep(1000);
-		    SpacesResponse singleResponse = responseS.next();
-		    System.out.println("Available Parking Bays: " + singleResponse.getMessage());
+		    SpacesResponse singleResponse = response.next();
+		    System.out.println("Parking Spot: " + singleResponse.getMessage());
 		}
 	}
 	

@@ -6,7 +6,6 @@ import java.util.logging.Logger;
 import carpark.service.carparkServicesGrpc.carparkServicesImplBase;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
-import io.grpc.ServerServiceDefinition;
 import io.grpc.stub.StreamObserver;
 
 public class CarparkServer extends carparkServicesImplBase{
@@ -39,7 +38,7 @@ public class CarparkServer extends carparkServicesImplBase{
 	
 	@Override
 	public void accessCarpark(AccessRequest request, StreamObserver<AccessResponse> responseObserver) {
-		System.out.println("*** Recieving Access Request ***");
+		logger.info("Recieving Access Request..");
 		String idPresented = request.getIdNumber();
 		String outcome = "";
 		if(Integer.parseInt(idPresented) % 2 ==0){
@@ -56,7 +55,7 @@ public class CarparkServer extends carparkServicesImplBase{
 	
 	@Override
 	public void leaveCarpark(LeaveRequest request, StreamObserver<LeaveResponse> responseObserver) {
-		System.out.println("*** Recieving Leave Request ***");
+		logger.info("Recieving Leave Request..");
 		LeaveResponse response = LeaveResponse.newBuilder().setMessage("You are leaving... ").build();
 		responseObserver.onNext(response);
 	     
@@ -65,7 +64,7 @@ public class CarparkServer extends carparkServicesImplBase{
 	
 	@Override
 	public void getAvailSpaces(SpacesRequest request, StreamObserver<SpacesResponse> responseObserver) {
-		System.out.println("*** Recieving Spaces Request ***");
+		logger.info("Recieving Spaces Request..");
 		// Below is a hardcoded fictional array of parking space available
 		// Each int represents a parking space id
 		int[] parkingSpaces = new int[] { 112, 213, 13, 98, 5 };
@@ -79,7 +78,7 @@ public class CarparkServer extends carparkServicesImplBase{
 	
 	@Override
 	public StreamObserver<AvailRequest> getSumAvailSpaces(final StreamObserver<AvailResponse> responseObserver) {
-		System.out.println("*** Recieving Sum of Available Spaces Request ***");
+		logger.info("Recieving Sum of Available Spaces Request");
 		return new StreamObserver<AvailRequest>() {
 			int availSpaces = 0;
 			ArrayList<Boolean> availStatuses = new ArrayList<Boolean>();

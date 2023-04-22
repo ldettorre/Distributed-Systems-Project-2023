@@ -76,6 +76,7 @@ public class SecurityServer extends securityServicesImplBase{
 	
 	@Override
 	public StreamObserver<DetailsRequest> accessBuilding(StreamObserver<DetailsResponse> responseObserver){
+		logger.info("Receiving Access Building Request");
 		return new StreamObserver<DetailsRequest>() {
 			ArrayList<String> entryLog = new ArrayList<String>();
 			@Override

@@ -28,6 +28,7 @@ public class ResourcesClient {
 		
 
 	private static void wifiPrinting () throws InterruptedException {
+		logger.info("wifiPrinting Started..");
 		StreamObserver<PrintResponse> responseObserver = new StreamObserver<PrintResponse>() {
 
 		@Override
@@ -54,15 +55,15 @@ public class ResourcesClient {
 		
 		try {
 			requestObserver.onNext(PrintRequest.newBuilder().setDocId(1).build());
-			Thread.sleep(500);
+			Thread.sleep(1000);
 			requestObserver.onNext(PrintRequest.newBuilder().setDocId(2).build());
-			Thread.sleep(500);
+			Thread.sleep(1000);
 			requestObserver.onNext(PrintRequest.newBuilder().setDocId(3).build());
-			Thread.sleep(500);
+			Thread.sleep(1000);
 			requestObserver.onNext(PrintRequest.newBuilder().setDocId(4).build());
-			Thread.sleep(500);
+			Thread.sleep(1000);
 			requestObserver.onNext(PrintRequest.newBuilder().setDocId(5).build());
-			Thread.sleep(500);
+			Thread.sleep(1000);
 			
 			requestObserver.onCompleted();
 			Thread.sleep(1000);
@@ -73,6 +74,7 @@ public class ResourcesClient {
 	}
 	
 	private static void roomAvailability() throws InterruptedException {
+		logger.info("roomAvailability Started..");
 		StreamObserver<RoomResponse> responseObserver = new StreamObserver<RoomResponse>() {
 			
 			@Override
@@ -107,6 +109,12 @@ public class ResourcesClient {
 			requestObserver.onNext(RoomRequest.newBuilder().setRoomNumber(4).build());
 			Thread.sleep(500);
 			requestObserver.onNext(RoomRequest.newBuilder().setRoomNumber(5).build());
+			Thread.sleep(500);
+			requestObserver.onNext(RoomRequest.newBuilder().setRoomNumber(2).build());
+			Thread.sleep(500);
+			requestObserver.onNext(RoomRequest.newBuilder().setRoomNumber(4).build());
+			Thread.sleep(500);
+			requestObserver.onNext(RoomRequest.newBuilder().setRoomNumber(6).build());
 			Thread.sleep(500);
 			
 			requestObserver.onCompleted();
