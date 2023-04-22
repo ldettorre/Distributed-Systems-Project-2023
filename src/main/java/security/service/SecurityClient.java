@@ -28,19 +28,24 @@ public class SecurityClient {
 		asyncStub = securityServicesGrpc.newStub(channel);
 		SecurityClient client = new SecurityClient();
 		
-		unlockDoor();
-		emergencyUnlock();
-		accessBuilding();
+		// To assign variables between a gui and the client, assign variables
+		// to the inputs from the GUI then pass them to the method
+		int userInput = 1234;
+		unlockDoor(userInput);
+//		emergencyUnlock();
+//		accessBuilding();
 	}
 	
-	private static void unlockDoor() {
+	// Unary 
+	private static void unlockDoor(int codeEntered) {
 		logger.info("Unlock Request Started..");
-		int codeEntered = 1234;
+//		int codeEntered = 1234;
 		UnlockRequest request = UnlockRequest.newBuilder().setCodeEntered(codeEntered).build();
 		UnlockResponse response = blockingStub.unlockDoor(request);
 		System.out.println("Door lock status: "+ response.getLockStatus());
 	}
 	
+	// Server Streaming
 	private static void emergencyUnlock() throws InterruptedException {
 		logger.info("Emergency Unlock Request Started..");
 		int codeEntered = 9999;
@@ -55,6 +60,7 @@ public class SecurityClient {
 		
 	}
 	
+	// Client Streaming
 	private static void accessBuilding() throws InterruptedException {
 		logger.info("Access Building Request Started");
 		StreamObserver<DetailsResponse> responseObserver = new StreamObserver<DetailsResponse>() {

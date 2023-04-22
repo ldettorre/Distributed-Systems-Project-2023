@@ -36,7 +36,8 @@ public class SecurityServer extends securityServicesImplBase{
 	@Override
 	public void unlockDoor(UnlockRequest request, StreamObserver<UnlockResponse> responseObserver) {
 		logger.info("Receiving Unlock Request");
-		int unlockCode = 1234;
+		System.out.println("Received Code: "+ request.getCodeEntered());
+		int unlockCode = request.getCodeEntered();
 		String lockStatus = "";
 		if(request.getCodeEntered() == unlockCode) {
 			lockStatus = "Door Unlocked.";

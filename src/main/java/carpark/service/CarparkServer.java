@@ -1,6 +1,7 @@
 package carpark.service;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Logger;
 import carpark.service.carparkServicesGrpc.carparkServicesImplBase;
 import io.grpc.Server;
@@ -38,7 +39,7 @@ public class CarparkServer extends carparkServicesImplBase{
 	
 	@Override
 	public void accessCarpark(AccessRequest request, StreamObserver<AccessResponse> responseObserver) {
-		System.out.println("Recieving Access Request");
+		System.out.println("*** Recieving Access Request ***");
 		String idPresented = request.getIdNumber();
 		String outcome = "";
 		if(Integer.parseInt(idPresented) % 2 ==0){
@@ -55,7 +56,7 @@ public class CarparkServer extends carparkServicesImplBase{
 	
 	@Override
 	public void leaveCarpark(LeaveRequest request, StreamObserver<LeaveResponse> responseObserver) {
-		System.out.println("Recieving Leave Request");
+		System.out.println("*** Recieving Leave Request ***");
 		LeaveResponse response = LeaveResponse.newBuilder().setMessage("You are leaving... ").build();
 		responseObserver.onNext(response);
 	     
@@ -64,7 +65,7 @@ public class CarparkServer extends carparkServicesImplBase{
 	
 	@Override
 	public void getAvailSpaces(SpacesRequest request, StreamObserver<SpacesResponse> responseObserver) {
-		System.out.println("Recieving Spaces Request");
+		System.out.println("*** Recieving Spaces Request ***");
 		// Below is a hardcoded fictional array of parking space available
 		// Each int represents a parking space id
 		int[] parkingSpaces = new int[] { 112, 213, 13, 98, 5 };
@@ -78,33 +79,38 @@ public class CarparkServer extends carparkServicesImplBase{
 	
 	@Override
 	public StreamObserver<AvailRequest> getSumAvailSpaces(final StreamObserver<AvailResponse> responseObserver) {
-		System.out.println("Recieving Sum of Available Spaces Request");
-	return new StreamObserver<AvailRequest>() {
-		int availSpaces = 0;
-		@Override
-		public void onNext(AvailRequest isAvail) {
-			// TODO Auto-generated method stub
-			System.out.println("Is this spot available: "+isAvail.getIsAvail());
-			if(isAvail.getIsAvail() == true) {
-				availSpaces +=1;
+		System.out.println("*** Recieving Sum of Available Spaces Request ***");
+		return new StreamObserver<AvailRequest>() {
+			int availSpaces = 0;
+			ArrayList<Boolean> availStatuses = new ArrayList<Boolean>();
+			
+			@Override
+			public void onNext(AvailRequest request) {
+				// TODO Auto-generated method stub
+				System.out.println("Is this spot available: "+request.getIsAvail());
+				availStatuses.add(request.getIsAvail());
 			}
-		}
-		
-		@Override
-		public void onError(Throwable t) {
-			// TODO Auto-generated method stub
-			logger.info("Error occured with getSumAvailSpaces on server file.");
-		}
-
-		@Override
-		public void onCompleted() {
-			// TODO Auto-generated method stub
-			AvailResponse response = AvailResponse.newBuilder().setSumAvail(availSpaces).build();
-			System.out.println("Number of available spaces: "+ response.getSumAvail());
-			responseObserver.onNext(response);
-			responseObserver.onCompleted();
-		}
-		
+			
+			@Override
+			public void onError(Throwable t) {
+				// TODO Auto-generated method stub
+				logger.info("Error occured with getSumAvailSpaces on server file.");
+			}
+	
+			@Override
+			public void onCompleted() {
+				// TODO Auto-generated method stub
+				for(int i=0;i<availStatuses.size();i++) {
+					if(availStatuses.get(i) == true) {
+						availSpaces +=1;
+					}
+				}
+				AvailResponse response = AvailResponse.newBuilder().setSumAvail(availSpaces).build();
+				System.out.println("Number of available spaces: "+ response.getSumAvail());
+				responseObserver.onNext(response);
+				responseObserver.onCompleted();
+			}
+			
 		};
 		
 	}

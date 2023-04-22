@@ -27,30 +27,34 @@ public class CarparkClient {
 		asyncStub = carparkServicesGrpc.newStub(channel);
 		CarparkClient client = new CarparkClient();
 		
-		accessCarpark();
-		leaveCarpark();
-		getAvailSpaces();
+//		accessCarpark();
+//		leaveCarpark();
+//		getAvailSpaces();
 		getSumAvailSpaces();
 	}
 	
+	// Unary
 	private static void accessCarpark() {
+		logger.info("accessCarpark Started..");
 		String idNumber = "2";
 		AccessRequest request = AccessRequest.newBuilder().setIdNumber(idNumber).build();
 		AccessResponse response = blockingStub.accessCarpark(request);
-		logger.info("Access Request Started..");
 		System.out.println("Requesting access for ID: "+ request.getIdNumber());
 	}
 	
 	
+	// Unary
 	public static void leaveCarpark() {
+		logger.info("leaveCarpark Started..");
 		LeaveRequest requestL = LeaveRequest.newBuilder().build();
-		logger.info("Access Request Started..");
 		LeaveResponse responseL = blockingStub.leaveCarpark(requestL);
 		System.out.println(responseL.getMessage());
 	}	
 	
 	
+	// Server Streaming
 	public static void getAvailSpaces() throws InterruptedException {
+		logger.info("getAvailSpaces Started..");
 		SpacesRequest requestS = SpacesRequest.newBuilder().build();
 		Iterator<SpacesResponse> responseS = blockingStub.getAvailSpaces(requestS);
 		
@@ -61,38 +65,42 @@ public class CarparkClient {
 		}
 	}
 	
+	
+	// Client Streaming
 	public static void getSumAvailSpaces() throws InterruptedException {
+		logger.info("getSumAvailSpaces Started..");
 		StreamObserver<AvailResponse> responseObserver = new StreamObserver<AvailResponse>() {
 
 			@Override
-			public void onNext(AvailResponse sumAvail) {
+			public void onNext(AvailResponse response) {
 				// TODO Auto-generated method stub
-				System.out.println("Number of available parking spaces: " + sumAvail.getSumAvail());
-			}
-	
-			@Override
-			public void onCompleted() {
-				// TODO Auto-generated method stub
-				logger.info("Finished client side streaming sum of available spaces.");
+				System.out.println("Number of available parking spaces: " + response.getSumAvail());
 			}
 	
 			@Override
 			public void onError(Throwable t) {
 				// TODO Auto-generated method stub
-				logger.info("Error with client side stream method");
+				logger.info("Error with getSumAvailSpaces client stream method");
+			}
+			
+			@Override
+			public void onCompleted() {
+				// TODO Auto-generated method stub
+				logger.info("Finished client streaming sum of available spaces.");
 			}
 		};
 		
 		StreamObserver<AvailRequest> requestObserver = asyncStub.getSumAvailSpaces(responseObserver);
 		
-		Boolean[] availStatuses = {true, true, false, false, true};
+		Boolean[] availStatuses = {true, true, false, false, true, false, true, true};
 		try {
 			for(int i=0;i<availStatuses.length;i++) {
-				AvailRequest requestA = AvailRequest.newBuilder().setIsAvail(availStatuses[i]).build();
-				requestObserver.onNext(requestA);
+				AvailRequest request = AvailRequest.newBuilder().setIsAvail(availStatuses[i]).build();
+				requestObserver.onNext(request);
 				Thread.sleep(500);
 			}
-		requestObserver.onCompleted();
+			requestObserver.onCompleted();
+			Thread.sleep(5000);
 		}
 		catch(StatusRuntimeException e) {
 			logger.log(Level.WARNING, "RCP failed: (0)", e.getStatus());
@@ -101,4 +109,4 @@ public class CarparkClient {
 	
 		
 		
-	}
+}
