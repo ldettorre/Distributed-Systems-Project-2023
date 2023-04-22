@@ -41,16 +41,23 @@ public class CarparkServer extends carparkServicesImplBase{
 		logger.info("Recieving Access Request..");
 		String idPresented = request.getIdNumber();
 		String outcome = "";
-		if(Integer.parseInt(idPresented) % 2 ==0){
-			outcome += "Valid ID :"+request.getIdNumber()+" Access Granted";
+		
+		try {
+			if(Integer.parseInt(idPresented) % 2 ==0){
+				outcome += "Access Granted";
+			}
+			else {
+				outcome += "Access Denied.";
+			}
 		}
-		else {
-			outcome += "ID :"+request.getIdNumber()+" is not valid.\n Access Denied.";
-		}
+		catch (NumberFormatException e) {
+			outcome = "Error! ID's only contain numbers.";
+            System.out.println(outcome);
+        }
 		AccessResponse response = AccessResponse.newBuilder().setMessage(outcome).build();
 		responseObserver.onNext(response);
-	     
 	    responseObserver.onCompleted();
+		
 	}
 	
 	@Override

@@ -73,6 +73,8 @@ public class ResourcesClient {
 		}
 	}
 	
+	
+	
 	private static void roomAvailability() throws InterruptedException {
 		logger.info("roomAvailability Started..");
 		StreamObserver<RoomResponse> responseObserver = new StreamObserver<RoomResponse>() {

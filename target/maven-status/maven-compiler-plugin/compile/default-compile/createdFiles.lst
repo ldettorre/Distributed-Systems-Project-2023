@@ -66,6 +66,7 @@ resources/service/RoomRequest.class
 resources/service/RoomResponse.class
 security/service/UnlockResponse.class
 carpark/service/carparkServicesGrpc$carparkServicesBlockingStub.class
+carpark/service/CarparkGUI.class
 security/service/SecurityServer.class
 security/service/DetailsResponse$1.class
 resources/service/resourcesServicesGrpc$1.class

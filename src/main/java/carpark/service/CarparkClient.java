@@ -27,20 +27,21 @@ public class CarparkClient {
 		asyncStub = carparkServicesGrpc.newStub(channel);
 		CarparkClient client = new CarparkClient();
 		
-		accessCarpark();
+//		accessCarpark();
 		leaveCarpark();
 		getAvailSpaces();
 		getSumAvailSpaces();
 	}
 	
 	// Unary
-	private static void accessCarpark() {
-		logger.info("accessCarpark Started..");
-		String idNumber = "2";
-		AccessRequest request = AccessRequest.newBuilder().setIdNumber(idNumber).build();
-		AccessResponse response = blockingStub.accessCarpark(request);
-		System.out.println("Requesting access for ID: "+ response.getMessage());
-	}
+//	public static void accessCarpark() {
+//		logger.info("accessCarpark Started..");
+////		String idNumber = "2";
+//		AccessRequest request = AccessRequest.newBuilder().setIdNumber().build();
+//		AccessResponse response = blockingStub.accessCarpark(request);
+//		System.out.println("Requesting access for ID: "+ response.getMessage());
+//	}
+	
 	
 	
 	// Unary
@@ -50,6 +51,7 @@ public class CarparkClient {
 		LeaveResponse response = blockingStub.leaveCarpark(request);
 		System.out.println(response.getMessage());
 	}	
+	
 	
 	
 	// Server Streaming
@@ -64,6 +66,7 @@ public class CarparkClient {
 		    System.out.println("Parking Spot: " + singleResponse.getMessage());
 		}
 	}
+	
 	
 	
 	// Client Streaming
@@ -107,6 +110,4 @@ public class CarparkClient {
 		}
 	}
 	
-		
-		
 }
