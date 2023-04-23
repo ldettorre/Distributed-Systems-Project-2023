@@ -52,8 +52,8 @@ public class CarparkServer extends carparkServicesImplBase{
 		}
 		catch (NumberFormatException e) {
 			outcome = "Error! ID's only contain numbers.";
-            System.out.println(outcome);
         }
+		System.out.println(outcome);
 		AccessResponse response = AccessResponse.newBuilder().setMessage(outcome).build();
 		responseObserver.onNext(response);
 	    responseObserver.onCompleted();
@@ -63,7 +63,7 @@ public class CarparkServer extends carparkServicesImplBase{
 	@Override
 	public void leaveCarpark(LeaveRequest request, StreamObserver<LeaveResponse> responseObserver) {
 		logger.info("Recieving Leave Request..");
-		LeaveResponse response = LeaveResponse.newBuilder().setMessage("You are leaving... ").build();
+		LeaveResponse response = LeaveResponse.newBuilder().setMessage("Caution: Barrier Lifting. ").build();
 		responseObserver.onNext(response);
 	     
 	    responseObserver.onCompleted();

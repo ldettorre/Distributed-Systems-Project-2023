@@ -32,9 +32,10 @@ public class CarparkGUI implements ActionListener{
 
 	
 	private JTextField accessInput, accessOutput;
+	private JTextField leaveInput, leaveOutput;
 	
 	
-	private JPanel carparkJPanel() {
+	private JPanel accessCarparkJPanel() {
 		JPanel panel = new JPanel();
 
 		BoxLayout boxlayout = new BoxLayout(panel, BoxLayout.X_AXIS);
@@ -61,6 +62,31 @@ public class CarparkGUI implements ActionListener{
 
 	}
 	
+	private JPanel leaveCarparkJPanel() {
+		JPanel panel = new JPanel();
+
+		BoxLayout boxlayout = new BoxLayout(panel, BoxLayout.X_AXIS);
+
+		JLabel leaveLabel = new JLabel("Request Exit.")	;
+		panel.add(leaveLabel);
+		panel.add(Box.createRigidArea(new Dimension(10, 0)));
+
+		JButton button = new JButton("Request Leave");
+		button.addActionListener(this);
+		panel.add(button);
+		panel.add(Box.createRigidArea(new Dimension(10, 0)));
+
+		leaveOutput = new JTextField("", 20);
+		leaveOutput .setEditable(false);
+		panel.add(leaveOutput );
+
+		panel.setLayout(boxlayout);
+
+		return panel;
+
+	}
+	
+	
 	
 	public static void main(String[] args) {
 
@@ -85,7 +111,8 @@ public class CarparkGUI implements ActionListener{
 		// Set border for the panel
 		panel.setBorder(new EmptyBorder(new Insets(50, 100, 50, 100)));
 	
-		panel.add(carparkJPanel() );
+		panel.add(accessCarparkJPanel() );
+		panel.add(leaveCarparkJPanel() );
 
 		// Set size for the frame
 		frame.setSize(300, 300);
@@ -108,6 +135,13 @@ public class CarparkGUI implements ActionListener{
 			carpark.service.AccessRequest request = AccessRequest.newBuilder().setIdNumber(accessInput.getText()).build();
 			carpark.service.AccessResponse response = blockingStub.accessCarpark(request);
 			accessOutput.setText(response.getMessage());
+		}
+		else if(label.equals("Request Leave")) {
+			System.out.println("Request Leave Selected");
+			carpark.service.LeaveRequest request = LeaveRequest.newBuilder().build();
+			carpark.service.LeaveResponse response = blockingStub.leaveCarpark(request);
+			leaveOutput.setText(response.getMessage());
+			
 		}
 		
 	}
