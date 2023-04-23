@@ -16,7 +16,7 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private EmUnlockRequest() {
-    codeEntered_ = 0;
+    codeEntered_ = "";
   }
 
   @java.lang.Override
@@ -43,9 +43,10 @@ private static final long serialVersionUID = 0L;
           case 0:
             done = true;
             break;
-          case 8: {
+          case 10: {
+            java.lang.String s = input.readStringRequireUtf8();
 
-            codeEntered_ = input.readInt32();
+            codeEntered_ = s;
             break;
           }
           default: {
@@ -81,12 +82,37 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int CODEENTERED_FIELD_NUMBER = 1;
-  private int codeEntered_;
+  private volatile java.lang.Object codeEntered_;
   /**
-   * <code>int32 codeEntered = 1;</code>
+   * <code>string codeEntered = 1;</code>
    */
-  public int getCodeEntered() {
-    return codeEntered_;
+  public java.lang.String getCodeEntered() {
+    java.lang.Object ref = codeEntered_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      codeEntered_ = s;
+      return s;
+    }
+  }
+  /**
+   * <code>string codeEntered = 1;</code>
+   */
+  public com.google.protobuf.ByteString
+      getCodeEnteredBytes() {
+    java.lang.Object ref = codeEntered_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      codeEntered_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
   }
 
   private byte memoizedIsInitialized = -1;
@@ -103,8 +129,8 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (codeEntered_ != 0) {
-      output.writeInt32(1, codeEntered_);
+    if (!getCodeEnteredBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 1, codeEntered_);
     }
     unknownFields.writeTo(output);
   }
@@ -115,9 +141,8 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (codeEntered_ != 0) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeInt32Size(1, codeEntered_);
+    if (!getCodeEnteredBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, codeEntered_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -135,8 +160,8 @@ private static final long serialVersionUID = 0L;
     security.service.EmUnlockRequest other = (security.service.EmUnlockRequest) obj;
 
     boolean result = true;
-    result = result && (getCodeEntered()
-        == other.getCodeEntered());
+    result = result && getCodeEntered()
+        .equals(other.getCodeEntered());
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -149,7 +174,7 @@ private static final long serialVersionUID = 0L;
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + CODEENTERED_FIELD_NUMBER;
-    hash = (53 * hash) + getCodeEntered();
+    hash = (53 * hash) + getCodeEntered().hashCode();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -283,7 +308,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      codeEntered_ = 0;
+      codeEntered_ = "";
 
       return this;
     }
@@ -360,8 +385,9 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(security.service.EmUnlockRequest other) {
       if (other == security.service.EmUnlockRequest.getDefaultInstance()) return this;
-      if (other.getCodeEntered() != 0) {
-        setCodeEntered(other.getCodeEntered());
+      if (!other.getCodeEntered().isEmpty()) {
+        codeEntered_ = other.codeEntered_;
+        onChanged();
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -392,28 +418,71 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private int codeEntered_ ;
+    private java.lang.Object codeEntered_ = "";
     /**
-     * <code>int32 codeEntered = 1;</code>
+     * <code>string codeEntered = 1;</code>
      */
-    public int getCodeEntered() {
-      return codeEntered_;
+    public java.lang.String getCodeEntered() {
+      java.lang.Object ref = codeEntered_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        codeEntered_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
     }
     /**
-     * <code>int32 codeEntered = 1;</code>
+     * <code>string codeEntered = 1;</code>
      */
-    public Builder setCodeEntered(int value) {
-      
+    public com.google.protobuf.ByteString
+        getCodeEnteredBytes() {
+      java.lang.Object ref = codeEntered_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        codeEntered_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <code>string codeEntered = 1;</code>
+     */
+    public Builder setCodeEntered(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
       codeEntered_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>int32 codeEntered = 1;</code>
+     * <code>string codeEntered = 1;</code>
      */
     public Builder clearCodeEntered() {
       
-      codeEntered_ = 0;
+      codeEntered_ = getDefaultInstance().getCodeEntered();
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string codeEntered = 1;</code>
+     */
+    public Builder setCodeEnteredBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      codeEntered_ = value;
       onChanged();
       return this;
     }

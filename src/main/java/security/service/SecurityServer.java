@@ -37,15 +37,22 @@ public class SecurityServer extends securityServicesImplBase{
 	public void unlockDoor(UnlockRequest request, StreamObserver<UnlockResponse> responseObserver) {
 		logger.info("Receiving Unlock Request");
 		System.out.println("Received Code: "+ request.getCodeEntered());
-		int unlockCode = request.getCodeEntered();
+		String codeEntered = request.getCodeEntered();
+		int unlockCode = 1234;
 		String lockStatus = "";
-		if(request.getCodeEntered() == unlockCode) {
-			lockStatus = "Door Unlocked.";
+		try {
+			if(Integer.parseInt(codeEntered) == unlockCode) {
+				lockStatus = "Door Unlocked.";
+			}
+			else {
+				lockStatus = "Code Failed. Door Locked";
+			}
+			System.out.println(lockStatus);
 		}
-		else {
-			lockStatus = "Code Failed. Door Locked";
+		catch (NumberFormatException e) {
+			lockStatus = "Error! Passcodes only contain numbers.";
 		}
-		System.out.println(lockStatus);
+		
 		UnlockResponse response = UnlockResponse.newBuilder().setLockStatus(lockStatus).build();
 		responseObserver.onNext(response);
 		responseObserver.onCompleted();
@@ -54,25 +61,32 @@ public class SecurityServer extends securityServicesImplBase{
 	@Override
 	public void emergencyUnlock(EmUnlockRequest request, StreamObserver<EmUnlockResponse> responseObserver) {
 		logger.info("Receiving Emergency Unlock Request");
-		int count = 0;
+
+		String emCodeEntered = request.getCodeEntered();
 		String emLockStatus = "Inactive.";
-		while(count <= 10) {
-			count ++;
-			if(request.getCodeEntered() == 9999) {
+		
+		try {
+			if(Integer.parseInt(emCodeEntered) == 9999) {
 				emLockStatus = "Active. Evacuate immediately";
+				for(int i=1;i<=10;i++) {
+					EmUnlockResponse response = EmUnlockResponse.newBuilder()
+							.setLockStatus("Door" + i + " " + emLockStatus).build();
+					responseObserver.onNext(response);
+				}
 			}
-			EmUnlockResponse response = EmUnlockResponse.newBuilder().setLockStatus(emLockStatus).build();
-			responseObserver.onNext(response);
-			
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			else {
+				emLockStatus = "Denied.";
 			}
 		}
+		catch (NumberFormatException e) {
+			emLockStatus = "Error! Numbers Only.";
+        }
+		
+		EmUnlockResponse response = EmUnlockResponse.newBuilder().setLockStatus(emLockStatus).build();
+		responseObserver.onNext(response);
 		responseObserver.onCompleted();
 	}
+	
 	
 	@Override
 	public StreamObserver<DetailsRequest> accessBuilding(StreamObserver<DetailsResponse> responseObserver){
@@ -87,6 +101,8 @@ public class SecurityServer extends securityServicesImplBase{
 				entryLog.add(recordEntry);
 				System.out.println("Adding record to signed in log on row: "+ entryLog.size());
 				System.out.println(recordEntry);
+				DetailsResponse response = DetailsResponse.newBuilder().setMessage(recordEntry).build();
+				responseObserver.onNext(response);
 			}
 
 			@Override
@@ -98,9 +114,9 @@ public class SecurityServer extends securityServicesImplBase{
 			@Override
 			public void onCompleted() {
 				// TODO Auto-generated method stub
-				DetailsResponse response = DetailsResponse.newBuilder().setMessage("Completed.").build();
-				System.out.println(response);
-				responseObserver.onNext(response);
+//				DetailsResponse response = DetailsResponse.newBuilder().setMessage("Completed.").build();
+//				System.out.println(response);
+//				responseObserver.onNext(response);
 				responseObserver.onCompleted();
 			}
 			

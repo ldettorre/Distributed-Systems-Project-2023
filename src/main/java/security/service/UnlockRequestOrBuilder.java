@@ -8,7 +8,12 @@ public interface UnlockRequestOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>int32 codeEntered = 1;</code>
+   * <code>string codeEntered = 1;</code>
    */
-  int getCodeEntered();
+  java.lang.String getCodeEntered();
+  /**
+   * <code>string codeEntered = 1;</code>
+   */
+  com.google.protobuf.ByteString
+      getCodeEnteredBytes();
 }

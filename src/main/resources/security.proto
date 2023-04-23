@@ -13,7 +13,7 @@ service securityServices {
 }
 
 message UnlockRequest {
-	int32 codeEntered = 1;
+	string codeEntered = 1;
 }
 
 message UnlockResponse {
@@ -21,7 +21,7 @@ message UnlockResponse {
 }
 
 message EmUnlockRequest {
-	int32 codeEntered = 1;
+	string codeEntered = 1;
 }
 
 message EmUnlockResponse {

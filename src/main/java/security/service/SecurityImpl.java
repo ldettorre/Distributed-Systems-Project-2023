@@ -54,9 +54,9 @@ public final class SecurityImpl {
   static {
     java.lang.String[] descriptorData = {
       "\n\016security.proto\022\010security\"$\n\rUnlockRequ" +
-      "est\022\023\n\013codeEntered\030\001 \001(\005\"$\n\016UnlockRespon" +
+      "est\022\023\n\013codeEntered\030\001 \001(\t\"$\n\016UnlockRespon" +
       "se\022\022\n\nlockStatus\030\001 \001(\t\"&\n\017EmUnlockReques" +
-      "t\022\023\n\013codeEntered\030\001 \001(\005\"&\n\020EmUnlockRespon" +
+      "t\022\023\n\013codeEntered\030\001 \001(\t\"&\n\020EmUnlockRespon" +
       "se\022\022\n\nlockStatus\030\001 \001(\t\"X\n\016DetailsRequest" +
       "\022\017\n\007staffID\030\001 \001(\005\022\022\n\nstaffFName\030\002 \001(\t\022\022\n" +
       "\nstaffLName\030\003 \001(\t\022\r\n\005floor\030\004 \001(\005\"\"\n\017Deta" +

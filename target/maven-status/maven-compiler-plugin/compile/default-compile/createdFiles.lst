@@ -59,6 +59,7 @@ security/service/EmUnlockRequest.class
 carpark/service/SpacesRequest$Builder.class
 resources/service/resourcesServicesGrpc$resourcesServicesBaseDescriptorSupplier.class
 resources/service/resourcesServicesGrpc$resourcesServicesImplBase.class
+resources/service/ResourcesGUI.class
 security/service/securityServicesGrpc.class
 security/service/DetailsResponse$Builder.class
 carpark/service/LeaveResponse.class
@@ -105,6 +106,7 @@ carpark/service/CarparkImpl$1.class
 resources/service/PrintResponse$Builder.class
 carpark/service/SpacesResponse$1.class
 resources/service/DocumentOrBuilder.class
+security/service/SecurityGUI.class
 security/service/SecurityClient.class
 security/service/securityServicesGrpc$1.class
 security/service/EmUnlockRequest$Builder.class
@@ -123,4 +125,5 @@ carpark/service/LeaveRequest.class
 security/service/UnlockResponseOrBuilder.class
 carpark/service/CarparkClient$1.class
 resources/service/PrintResponse.class
+resources/service/ResourcesGUI$1.class
 resources/service/RoomRequest$1.class
