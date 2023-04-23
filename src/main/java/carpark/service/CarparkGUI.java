@@ -219,11 +219,12 @@ public class CarparkGUI implements ActionListener{
 		else if(label.equals("Request Sum Avail")){
 			System.out.println("Requesting Sum Of Available Spaces");
 			StreamObserver<AvailResponse> responseObserver = new StreamObserver<AvailResponse>() {
-				
+				int numSpaces;  
 				@Override
 				public void onNext(AvailResponse response) {
 					// TODO Auto-generated method stub
 					System.out.println("Number of available parking spaces: " + response.getSumAvail());
+					numSpaces  =response.getSumAvail();
 				}
 		
 				@Override
@@ -236,7 +237,7 @@ public class CarparkGUI implements ActionListener{
 				public void onCompleted() {
 					// TODO Auto-generated method stub
 					System.out.println("Finished client streaming sum of available spaces.");
-					sumAvailOutput.setText("Finished Streaming To Server.");
+					sumAvailOutput.setText(numSpaces + " spaces available. Stream finished.");
 				}
 			};
 			
