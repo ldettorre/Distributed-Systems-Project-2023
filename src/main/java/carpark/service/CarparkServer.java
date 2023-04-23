@@ -72,16 +72,39 @@ public class CarparkServer extends carparkServicesImplBase{
 	@Override
 	public void getAvailSpaces(SpacesRequest request, StreamObserver<SpacesResponse> responseObserver) {
 		logger.info("Recieving Spaces Request..");
-		// Below is a hardcoded fictional array of parking space available
-		// Each int represents a parking space id
-		int[] parkingSpaces = new int[] { 112, 213, 13, 98, 5 };
-		for(int i=0;i<parkingSpaces.length;i++) {
-			int space = parkingSpaces[i];
-			SpacesResponse response = SpacesResponse.newBuilder().setMessage(space).build();
+		
+		ArrayList<Integer> parkingSpaces = new ArrayList<Integer>();
+		int minParkingId = 1;  
+		int maxParkingId= 20;  
+		
+		int minNumSpaces = 0;
+		int maxNumSpaces = 20;
+		int randomNumOfSpaces = (int)(Math.random()*(maxNumSpaces-minNumSpaces+1)+minNumSpaces);
+		
+		/* The logic below is to simulates a random number of spaces available and adds random
+		 * parking space Id's to a list.
+		 * This is to simulate real life parking spaces becoming available and occupied.
+		 */
+		for(int i=0; i<randomNumOfSpaces; i++) {
+			int randomParkingId = (int)(Math.random()*(maxParkingId-minParkingId+1)+minParkingId);
+			if(!parkingSpaces.contains(randomParkingId)) {
+				parkingSpaces.add(randomParkingId);
+				System.out.println("Parking Bay: "+randomParkingId + " is available.");
+			}
+		}
+		
+		/* I then use a for loop to start streaming those spaces back to the GUI */
+		if(parkingSpaces.size()==0) {
+			SpacesResponse response = SpacesResponse.newBuilder().setMessage("No Bays Available.").build();
+			responseObserver.onNext(response);
+		}
+		for(int k=0; k<parkingSpaces.size(); k++) {
+			SpacesResponse response = SpacesResponse.newBuilder().setMessage("Parking Bay: "+parkingSpaces.get(k)).build();
 			responseObserver.onNext(response);
 		}
 		responseObserver.onCompleted();
 	}
+	
 	
 	@Override
 	public StreamObserver<AvailRequest> getSumAvailSpaces(final StreamObserver<AvailResponse> responseObserver) {

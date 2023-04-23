@@ -28,8 +28,8 @@ public class CarparkClient {
 		CarparkClient client = new CarparkClient();
 		
 //		accessCarpark();
-		leaveCarpark();
-		getAvailSpaces();
+//		leaveCarpark();
+//		getAvailSpaces();
 		getSumAvailSpaces();
 	}
 	
@@ -45,27 +45,27 @@ public class CarparkClient {
 	
 	
 	// Unary
-	public static void leaveCarpark() {
-		logger.info("leaveCarpark Started..");
-		LeaveRequest request = LeaveRequest.newBuilder().build();
-		LeaveResponse response = blockingStub.leaveCarpark(request);
-		System.out.println(response.getMessage());
-	}	
+//	public static void leaveCarpark() {
+//		logger.info("leaveCarpark Started..");
+//		LeaveRequest request = LeaveRequest.newBuilder().build();
+//		LeaveResponse response = blockingStub.leaveCarpark(request);
+//		System.out.println(response.getMessage());
+//	}	
 	
 	
 	
 	// Server Streaming
-	public static void getAvailSpaces() throws InterruptedException {
-		logger.info("getAvailSpaces Started..");
-		SpacesRequest request = SpacesRequest.newBuilder().build();
-		Iterator<SpacesResponse> response = blockingStub.getAvailSpaces(request);
-		
-		while (response.hasNext()) {
-			Thread.sleep(1000);
-		    SpacesResponse singleResponse = response.next();
-		    System.out.println("Parking Spot: " + singleResponse.getMessage());
-		}
-	}
+//	public static void getAvailSpaces() throws InterruptedException {
+//		logger.info("getAvailSpaces Started..");
+//		SpacesRequest request = SpacesRequest.newBuilder().build();
+//		Iterator<SpacesResponse> response = blockingStub.getAvailSpaces(request);
+//		
+//		while (response.hasNext()) {
+//			Thread.sleep(1000);
+//		    SpacesResponse singleResponse = response.next();
+//		    System.out.println("Parking Spot: " + singleResponse.getMessage());
+//		}
+//	}
 	
 	
 	

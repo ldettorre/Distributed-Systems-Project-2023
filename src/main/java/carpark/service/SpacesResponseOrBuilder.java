@@ -8,7 +8,12 @@ public interface SpacesResponseOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>int32 message = 1;</code>
+   * <code>string message = 1;</code>
    */
-  int getMessage();
+  java.lang.String getMessage();
+  /**
+   * <code>string message = 1;</code>
+   */
+  com.google.protobuf.ByteString
+      getMessageBytes();
 }

@@ -38,6 +38,7 @@ resources/service/ResourcesClient.class
 resources/service/resourcesServicesGrpc$MethodHandlers.class
 carpark/service/carparkServicesGrpc$carparkServicesImplBase.class
 resources/service/PrintRequest$1.class
+carpark/service/CarparkGUI$1.class
 carpark/service/AvailRequest$Builder.class
 security/service/UnlockRequest$Builder.class
 security/service/SecurityClient$1.class

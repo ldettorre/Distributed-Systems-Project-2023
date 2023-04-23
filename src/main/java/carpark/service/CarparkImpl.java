@@ -67,7 +67,7 @@ public final class CarparkImpl {
       "t\022\020\n\010idNumber\030\001 \001(\t\"!\n\016AccessResponse\022\017\n" +
       "\007message\030\001 \001(\t\"\016\n\014LeaveRequest\" \n\rLeaveR" +
       "esponse\022\017\n\007message\030\001 \001(\t\"\017\n\rSpacesReques" +
-      "t\"!\n\016SpacesResponse\022\017\n\007message\030\001 \001(\005\"\037\n\014" +
+      "t\"!\n\016SpacesResponse\022\017\n\007message\030\001 \001(\t\"\037\n\014" +
       "AvailRequest\022\017\n\007isAvail\030\001 \001(\010\"!\n\rAvailRe" +
       "sponse\022\020\n\010sumAvail\030\001 \001(\0052\245\002\n\017carparkServ" +
       "ices\022B\n\rAccessCarpark\022\026.carpark.AccessRe" +
